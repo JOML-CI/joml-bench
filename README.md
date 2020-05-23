@@ -18,12 +18,14 @@ The space requirements for such a cloned and fully built JDK is ~5.6GB, which wi
 ## On an Intel Xeon E-2176M
 
 ```
-Benchmark             Mode  Cnt   Score   Error  Units
-Bench.mul128Loop      avgt    5  40.239 ± 0.397  ns/op
-Bench.mul128Unrolled  avgt    5  35.796 ± 0.658  ns/op
-Bench.mul256          avgt    5  41.124 ± 0.152  ns/op
-Bench.mulJniSSE       avgt    5  16.960 ± 0.064  ns/op
-Bench.mulScalar       avgt    5  21.271 ± 0.142  ns/op
-Bench.mulScalarFma    avgt    5  15.630 ± 0.103  ns/op
+Benchmark                Mode  Cnt   Score   Error  Units
+Bench.mul128LoopArr      avgt    5  33.034 ± 0.370  ns/op
+Bench.mul128LoopBB       avgt    5  42.357 ± 0.440  ns/op
+Bench.mul128UnrolledArr  avgt    5  32.213 ± 0.476  ns/op
+Bench.mul128UnrolledBB   avgt    5  31.871 ± 0.155  ns/op
+Bench.mul256Arr          avgt    5  32.419 ± 0.107  ns/op
+Bench.mul256BB           avgt    5  29.098 ± 0.230  ns/op
+Bench.mulJniSSE          avgt    5  15.233 ± 0.168  ns/op
+Bench.mulScalar          avgt    5  20.596 ± 0.047  ns/op
+Bench.mulScalarFma       avgt    5  15.263 ± 0.171  ns/op
 ```
-

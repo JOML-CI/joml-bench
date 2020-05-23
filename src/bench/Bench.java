@@ -17,7 +17,8 @@ import static org.openjdk.jmh.annotations.Scope.Benchmark;
 @Fork(1)
 public class Bench {
     private final Matrix4f m4 = new Matrix4f();
-    private final Matrix4fv m4v = new Matrix4fv();
+    private final Matrix4fvBB m4vbb = new Matrix4fvBB();
+    private final Matrix4fvArr m4varr = new Matrix4fvArr();
     private final Matrix4fn m4n = new Matrix4fn();
 
     @Benchmark
@@ -36,18 +37,33 @@ public class Bench {
     }
 
     @Benchmark
-    public Object mul256() {
-        return m4v.mul256(m4v);
+    public Object mul256Arr() {
+        return m4varr.mul256(m4varr);
     }
 
     @Benchmark
-    public Object mul128Unrolled() {
-        return m4v.mul128Unrolled(m4v);
+    public Object mul128UnrolledArr() {
+        return m4varr.mul128Unrolled(m4varr);
     }
 
     @Benchmark
-    public Object mul128Loop() {
-        return m4v.mul128Loop(m4v);
+    public Object mul128LoopArr() {
+        return m4varr.mul128Loop(m4varr);
+    }
+
+    @Benchmark
+    public Object mul256BB() {
+        return m4vbb.mul256(m4vbb);
+    }
+
+    @Benchmark
+    public Object mul128UnrolledBB() {
+        return m4vbb.mul128Unrolled(m4vbb);
+    }
+
+    @Benchmark
+    public Object mul128LoopBB() {
+        return m4vbb.mul128Loop(m4vbb);
     }
 
     public static void main(String[] args) throws Exception {
