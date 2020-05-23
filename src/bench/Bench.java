@@ -22,6 +22,11 @@ public class Bench {
     private final Matrix4fn m4n = new Matrix4fn();
 
     @Benchmark
+    public Object noopJni() {
+        return m4n.noop(m4n);
+    }
+
+    @Benchmark
     public Object mulJniSSE() {
         return m4n.mulSSE(m4n);
     }

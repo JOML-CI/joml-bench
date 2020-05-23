@@ -95,6 +95,9 @@ inline static void mulAVX(const MATRIX* M1, const MATRIX* M2, MATRIX* MD) {
                                                 //      a30*b00+a31*b10+a32*b20+a33*b30  a30*b01+a31*b11+a32*b21+a33*b31  a30*b02+a31*b12+a32*b22+a33*b32  a30*b03+a31*b13+a32*b23+a33*b33
 }
 
+JNIEXPORT void JNICALL Java_bench_Matrix4fn_noop(JNIEnv* env, jclass clazz, jlong m0, jlong m1, jlong dest) {}
+JNIEXPORT void JNICALL JavaCritical_bench_Matrix4fn_noop(jlong m0, jlong m1, jlong dest) {}
+
 JNIEXPORT void JNICALL Java_bench_Matrix4fn_mulSSE(JNIEnv* env, jclass clazz, jlong m0, jlong m1, jlong dest) {
 	mulSSE((const float*)(intptr_t)m0, (const float*)(intptr_t)m1, (float*)(intptr_t)dest);
 }

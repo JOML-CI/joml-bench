@@ -29,4 +29,5 @@ Bench.mulJniAVX          avgt    5  12.623 ± 0.379  ns/op
 Bench.mulJniSSE          avgt    5  13.888 ± 0.475  ns/op
 Bench.mulScalar          avgt    5  22.563 ± 0.088  ns/op
 Bench.mulScalarFma       avgt    5  17.296 ± 0.215  ns/op
+Bench.noopJni            avgt    5  10.874 ± 0.204  ns/op
 ```

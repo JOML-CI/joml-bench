@@ -14,9 +14,14 @@ public class Matrix4fn {
 
     private static native long allocate();
     private static native void free(long addr);
+    private static native void noop(long m1, long m2, long dest);
     private static native void mulSSE(long m1, long m2, long dest);
     private static native void mulAVX(long m1, long m2, long dest);
 
+    public Matrix4fn noop(Matrix4fn right) {
+        noop(addr, right.addr, addr);
+        return this;
+    }
     public Matrix4fn mulSSE(Matrix4fn right) {
         mulSSE(addr, right.addr, addr);
         return this;
