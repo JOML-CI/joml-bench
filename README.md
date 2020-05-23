@@ -19,13 +19,14 @@ The space requirements for such a cloned and fully built JDK is ~5.6GB, which wi
 
 ```
 Benchmark                Mode  Cnt   Score   Error  Units
-Bench.mul128LoopArr      avgt    5  33.034 ± 0.370  ns/op
-Bench.mul128LoopBB       avgt    5  42.357 ± 0.440  ns/op
-Bench.mul128UnrolledArr  avgt    5  32.213 ± 0.476  ns/op
-Bench.mul128UnrolledBB   avgt    5  31.871 ± 0.155  ns/op
-Bench.mul256Arr          avgt    5  32.419 ± 0.107  ns/op
-Bench.mul256BB           avgt    5  29.098 ± 0.230  ns/op
-Bench.mulJniSSE          avgt    5  15.233 ± 0.168  ns/op
-Bench.mulScalar          avgt    5  20.596 ± 0.047  ns/op
-Bench.mulScalarFma       avgt    5  15.263 ± 0.171  ns/op
+Bench.mul128LoopArr      avgt    5  23.933 ± 0.195  ns/op
+Bench.mul128LoopBB       avgt    5  37.562 ± 0.462  ns/op
+Bench.mul128UnrolledArr  avgt    5  28.228 ± 0.060  ns/op
+Bench.mul128UnrolledBB   avgt    5  40.108 ± 0.401  ns/op
+Bench.mul256Arr          avgt    5  34.685 ± 0.374  ns/op
+Bench.mul256BB           avgt    5  40.312 ± 0.462  ns/op
+Bench.mulJniAVX          avgt    5  12.623 ± 0.379  ns/op
+Bench.mulJniSSE          avgt    5  13.888 ± 0.475  ns/op
+Bench.mulScalar          avgt    5  22.563 ± 0.088  ns/op
+Bench.mulScalarFma       avgt    5  17.296 ± 0.215  ns/op
 ```

@@ -23,7 +23,12 @@ public class Bench {
 
     @Benchmark
     public Object mulJniSSE() {
-        return m4n.mul(m4n);
+        return m4n.mulSSE(m4n);
+    }
+
+    @Benchmark
+    public Object mulJniAVX() {
+        return m4n.mulAVX(m4n);
     }
 
     @Benchmark
