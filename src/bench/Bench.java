@@ -18,6 +18,12 @@ import static org.openjdk.jmh.annotations.Scope.Benchmark;
 public class Bench {
     private final Matrix4f m4 = new Matrix4f();
     private final Matrix4fv m4v = new Matrix4fv();
+    private final Matrix4fn m4n = new Matrix4fn();
+
+    @Benchmark
+    public Object mulJniSSE() {
+        return m4n.mul(m4n);
+    }
 
     @Benchmark
     public Object mulScalar() {
