@@ -1,5 +1,6 @@
 /.idea/
 /native/build/
+/native/*.[is]
 /panama-vector/
 /target/
 /*.iml
