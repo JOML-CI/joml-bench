@@ -1,4 +1,5 @@
 /.idea/
+/binutils-2.32/
 /native/build/
 /native/*.[is]
 /panama-vector/

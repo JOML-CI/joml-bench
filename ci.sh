@@ -22,5 +22,23 @@ fi
 # Configure JAVA_HOME and PATH
 export JAVA_HOME=$(pwd)/panama-vector/build/linux-x86_64-server-release/images/jdk
 export PATH=$(pwd)/panama-vector/build/linux-x86_64-server-release/images/jdk/bin:$PATH
+
+# Download and extract binutils
+if [ ! -d "binutils-2.32" ]; then
+  wget https://ftp.gnu.org/gnu/binutils/binutils-2.32.tar.gz
+  tar xf binutils-2.32.tar.gz
+  rm binutils-2.32.tar.gz
+fi
+BINUTILS=$(pwd)/binutils-2.32
+(
+  cd panama-vector/src/utils/hsdis
+  # Build hsdis
+  if [ ! -f "build/linux-amd64/hsdis-amd64.so" ]; then
+    make BINUTILS=$BINUTILS ARCH=amd64
+  fi
+  # Copy to JDK
+  cp build/linux-amd64/hsdis-amd64.so ${JAVA_HOME}/lib/
+)
+
 # Build and run the benchmarks
 ./mvnw package && java --add-modules jdk.incubator.vector -jar target/bench.jar

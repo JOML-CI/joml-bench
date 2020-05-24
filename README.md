@@ -12,6 +12,7 @@ Without having a local Panama vectorIntrinsics build, run:
 ```
 This will shallow-clone the [GitHub mirror of the Panama vectorIntrinsics branch](https://github.com/openjdk/panama-vector/tree/vectorIntrinsics), build the JDK and execute the benchmarks using it. Make sure your system fulfills the [OpenJDK build requirements](https://github.com/openjdk/panama-vector/blob/vectorIntrinsics/doc/building.md).
 The space requirements for such a cloned and fully built JDK is ~5.6GB, which will reside inside of the panama-vector directory.
+In addition, the hsdis utility library is built and installed into the JDK's lib directory.
 
 # Results
 
