@@ -10,9 +10,30 @@ Without having a local Panama vectorIntrinsics build, run:
 ```
 ./ci.sh
 ```
-This will shallow-clone the [GitHub mirror of the Panama vectorIntrinsics branch](https://github.com/openjdk/panama-vector/tree/vectorIntrinsics), build the JDK and execute the benchmarks using it. Make sure your system fulfills the [OpenJDK build requirements](https://github.com/openjdk/panama-vector/blob/vectorIntrinsics/doc/building.md).
+This will shallow-clone the [GitHub mirror of the Panama vectorIntrinsics branch](https://github.com/openjdk/panama-vector/tree/vectorIntrinsics), build the JDK and execute the benchmarks using it. Make sure your system fulfills the [OpenJDK build requirements](https://github.com/openjdk/panama-vector/blob/vectorIntrinsics/doc/building.md). See the section "Clean Ubuntu Setup" below for a clean Ubuntu setup.
 The space requirements for such a cloned and fully built JDK is ~5.6GB, which will reside inside of the panama-vector directory.
 In addition, the hsdis utility library is built and installed into the JDK's lib directory.
+
+## Clean Ubuntu Setup (tested on Ubuntu 20.04)
+
+```
+sudo apt install -y openjdk-14-jdk-headless \
+                    libasound2-dev \
+                    libfontconfig1-dev \
+                    libcups2-dev \
+                    libx11-dev \
+                    libxext-dev \
+                    libxrender-dev \
+                    libxrandr-dev \
+                    libxtst-dev \
+                    libxt-dev \
+                    git \
+                    zip \
+                    unzip \
+                    automake \
+                    autoconf \
+                    build-essential
+```
 
 ## Seeing the disassembly
 
