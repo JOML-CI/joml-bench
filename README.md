@@ -45,8 +45,7 @@ The x86 code is then printed to stdout. This requires the hsdis utility library 
 
 # Results
 
-## On an Intel Xeon E-2176M
-
+## Intel Xeon E-2176M
 ```
 Benchmark                Mode  Cnt   Score   Error  Units
 Bench.mul128LoopArr      avgt    5  32.460 ± 0.374  ns/op
@@ -60,4 +59,20 @@ Bench.mulJniSSE          avgt    5  14.050 ± 0.089  ns/op
 Bench.mulScalar          avgt    5  18.729 ± 0.075  ns/op
 Bench.mulScalarFma       avgt    5  14.567 ± 0.254  ns/op
 Bench.noopJni            avgt    5  10.811 ± 0.037  ns/op
+```
+
+## Intel Xeon Platinum 8124M
+```
+Benchmark                Mode  Cnt   Score   Error  Units
+Bench.mul128LoopArr      avgt    5  33.849 ± 1.017  ns/op
+Bench.mul128LoopBB       avgt    5  39.956 ± 0.686  ns/op
+Bench.mul128UnrolledArr  avgt    5  32.195 ± 1.176  ns/op
+Bench.mul128UnrolledBB   avgt    5  40.582 ± 0.736  ns/op
+Bench.mul256Arr          avgt    5  35.740 ± 0.614  ns/op
+Bench.mul256BB           avgt    5  33.070 ± 0.042  ns/op
+Bench.mulJniAVX          avgt    5  14.457 ± 0.004  ns/op
+Bench.mulJniSSE          avgt    5  14.460 ± 0.025  ns/op
+Bench.mulScalar          avgt    5  22.179 ± 0.104  ns/op
+Bench.mulScalarFma       avgt    5  16.444 ± 0.024  ns/op
+Bench.noopJni            avgt    5  12.394 ± 0.044  ns/op
 ```
