@@ -47,6 +47,11 @@ public class Bench {
     }
 
     @Benchmark
+    public Object mulAffineScalarFma() {
+        return m4.mulAffineFma(m4);
+    }
+
+    @Benchmark
     public Object mul256Arr() {
         return m4varr.mul256(m4varr);
     }

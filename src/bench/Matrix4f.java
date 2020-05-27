@@ -106,6 +106,38 @@ public class Matrix4f {
         return this;
     }
 
+    public Matrix4f mulAffineFma(Matrix4f right) {
+        float nm00 = Math.fma(m00, right.m00, Math.fma(m10, right.m01, m20 * right.m02));
+        float nm01 = Math.fma(m01, right.m00, Math.fma(m11, right.m01, m21 * right.m02));
+        float nm02 = Math.fma(m02, right.m00, Math.fma(m12, right.m01, m22 * right.m02));
+        float nm10 = Math.fma(m00, right.m10, Math.fma(m10, right.m11, m20 * right.m12));
+        float nm11 = Math.fma(m01, right.m10, Math.fma(m11, right.m11, m21 * right.m12));
+        float nm12 = Math.fma(m02, right.m10, Math.fma(m12, right.m11, m22 * right.m12));
+        float nm20 = Math.fma(m00, right.m20, Math.fma(m10, right.m21, m20 * right.m22));
+        float nm21 = Math.fma(m01, right.m20, Math.fma(m11, right.m21, m21 * right.m22));
+        float nm22 = Math.fma(m02, right.m20, Math.fma(m12, right.m21, m22 * right.m22));
+        float nm30 = Math.fma(m00, right.m30, Math.fma(m10, right.m31, Math.fma(m20, right.m32, m30)));
+        float nm31 = Math.fma(m01, right.m30, Math.fma(m11, right.m31, Math.fma(m21, right.m32, m31)));
+        float nm32 = Math.fma(m02, right.m30, Math.fma(m12, right.m31, Math.fma(m22, right.m32, m32)));
+        m00 = nm00;
+        m01 = nm01;
+        m02 = nm02;
+        m03 = 0.0f;
+        m10 = nm10;
+        m11 = nm11;
+        m12 = nm12;
+        m13 = 0.0f;
+        m20 = nm20;
+        m21 = nm21;
+        m22 = nm22;
+        m23 = 0.0f;
+        m30 = nm30;
+        m31 = nm31;
+        m32 = nm32;
+        m33 = 1.0f;
+        return this;
+    }
+
     public String toString() {
         DecimalFormat f = new DecimalFormat(" 0.000E0;-");
         return f.format(m00) + " " + f.format(m10) + " " + f.format(m20) + " " + f.format(m30) + "\n"

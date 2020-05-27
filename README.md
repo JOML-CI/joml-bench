@@ -79,18 +79,19 @@ Bench.noopJni            avgt    5  10.744 ± 0.103  ns/op
 ### With -Djdk.incubator.vector.VECTOR_ACCESS_OOB_CHECK=0 and AbstractShuffle.checkIndexes_Use_VECTOR_ACCESS_OOB_CHECK.patch
 See: https://mail.openjdk.java.net/pipermail/panama-dev/2020-May/009302.html
 ```
-Benchmark                Mode  Cnt   Score   Error  Units
-Bench.mul128LoopArr      avgt    5   8.668 ± 0.058  ns/op
-Bench.mul128LoopBB       avgt    5  20.188 ± 0.833  ns/op
-Bench.mul128UnrolledArr  avgt    5   9.676 ± 0.092  ns/op
-Bench.mul128UnrolledBB   avgt    5  16.103 ± 0.160  ns/op
-Bench.mul256Arr          avgt    5   8.890 ± 0.125  ns/op
-Bench.mul256BB           avgt    5   9.917 ± 0.030  ns/op
-Bench.mulJniAVX          avgt    5  13.487 ± 0.089  ns/op
-Bench.mulJniSSE          avgt    5  14.396 ± 0.062  ns/op
-Bench.mulScalar          avgt    5  19.400 ± 0.159  ns/op
-Bench.mulScalarFma       avgt    5  15.260 ± 0.459  ns/op
-Bench.noopJni            avgt    5  11.149 ± 0.086  ns/op
+Benchmark                 Mode  Cnt   Score   Error  Units
+Bench.mul128LoopArr       avgt    5   8.584 ± 0.136  ns/op
+Bench.mul128LoopBB        avgt    5  18.107 ± 0.148  ns/op
+Bench.mul128UnrolledArr   avgt    5   9.158 ± 0.114  ns/op
+Bench.mul128UnrolledBB    avgt    5  16.129 ± 0.250  ns/op
+Bench.mul256Arr           avgt    5   8.519 ± 0.043  ns/op
+Bench.mul256BB            avgt    5  10.390 ± 0.056  ns/op
+Bench.mulAffineScalarFma  avgt    5  11.271 ± 0.188  ns/op
+Bench.mulJniAVX           avgt    5  13.562 ± 0.044  ns/op
+Bench.mulJniSSE           avgt    5  14.509 ± 0.641  ns/op
+Bench.mulScalar           avgt    5  19.276 ± 0.755  ns/op
+Bench.mulScalarFma        avgt    5  15.644 ± 0.083  ns/op
+Bench.noopJni             avgt    5  10.702 ± 0.028  ns/op
 ```
 
 ## Intel Xeon Platinum 8124M
