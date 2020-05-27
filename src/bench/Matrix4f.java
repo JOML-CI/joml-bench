@@ -1,12 +1,32 @@
 package bench;
 
+import java.nio.ByteBuffer;
 import java.text.DecimalFormat;
+
+import static bench.Matrix4fv.A;
+import static bench.Matrix4fv.U;
 
 /**
  * 4x4 matrix backed by 16 float fields.
  */
 public class Matrix4f {
 
+    private static final long M00 = m00Offset();
+
+    private static long m00Offset() {
+        try {
+            long m00 = U.objectFieldOffset(Matrix4f.class.getDeclaredField("m00"));
+            for (int i = 1; i < 16; i++) {
+                if (U.objectFieldOffset(Matrix4f.class.getDeclaredField("m" + (i>>>2) + "" + (i&3))) != m00 + (i<<2))
+                    throw new AssertionError("unsupported offset");
+            }
+            return m00;
+        } catch (Exception e) {
+            throw new AssertionError(e);
+        }
+    }
+
+    private float pad0; // <- to align m00 on 8 bytes for Unsafe.getLong()
     // column0
     private float m00, m01, m02, m03;
     // column1
@@ -144,6 +164,13 @@ public class Matrix4f {
              + f.format(m01) + " " + f.format(m11) + " " + f.format(m21) + " " + f.format(m31) + "\n"
              + f.format(m02) + " " + f.format(m12) + " " + f.format(m22) + " " + f.format(m32) + "\n"
              + f.format(m03) + " " + f.format(m13) + " " + f.format(m23) + " " + f.format(m33);
+    }
+
+    public ByteBuffer storeU(ByteBuffer bb) {
+        long addr = U.getLong(bb, A);
+        for (int i = 0; i < 8; i++)
+            U.putLong(addr + (i<<3), U.getLong(this, M00 + (i<<3)));
+        return bb;
     }
 
     public static void main(String[] args) {

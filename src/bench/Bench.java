@@ -4,6 +4,9 @@ import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
 
+import java.nio.ByteBuffer;
+
+import static java.nio.ByteBuffer.allocateDirect;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 import static java.util.concurrent.TimeUnit.NANOSECONDS;
 import static org.openjdk.jmh.annotations.Mode.AverageTime;
@@ -20,6 +23,22 @@ public class Bench {
     private final Matrix4fvBB m4vbb = new Matrix4fvBB();
     private final Matrix4fvArr m4varr = new Matrix4fvArr();
     private final Matrix4fn m4n = new Matrix4fn();
+    private final ByteBuffer bb = allocateDirect(16<<2);
+
+    @Benchmark
+    public void Matrix4fvArr_storeU() {
+        m4varr.storeU(bb);
+    }
+
+    @Benchmark
+    public void Matrix4fvArr_storeV256() {
+        m4varr.storeV256(bb);
+    }
+
+    @Benchmark
+    public void Matrix4f_storeU() {
+        m4.storeU(bb);
+    }
 
     @Benchmark
     public Object noopJni() {

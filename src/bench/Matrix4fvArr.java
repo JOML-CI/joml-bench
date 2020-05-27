@@ -2,9 +2,11 @@ package bench;
 
 import jdk.incubator.vector.FloatVector;
 
+import java.nio.ByteBuffer;
 import java.text.DecimalFormat;
 
 import static bench.Matrix4fv.*;
+import static java.nio.ByteOrder.nativeOrder;
 import static jdk.incubator.vector.FloatVector.*;
 
 /**
@@ -102,6 +104,20 @@ public class Matrix4fvArr {
             }
         }
         return str.toString();
+    }
+
+    public ByteBuffer storeV256(ByteBuffer bb) {
+        fromArray(SPECIES_256, es, 0).intoByteBuffer(bb, 0, nativeOrder());
+        fromArray(SPECIES_256, es, 8).intoByteBuffer(bb, 32, nativeOrder());
+        return bb;
+    }
+
+    public ByteBuffer storeU(ByteBuffer bb) {
+        long addr = U.getLong(bb, A);
+        for (int i = 0; i < 8; i++) {
+            U.putLong(addr + (i << 3), U.getLong(es, O + (i << 3)));
+        }
+        return bb;
     }
 
     public static void main(String[] args) {

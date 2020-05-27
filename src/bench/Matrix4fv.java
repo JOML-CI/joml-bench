@@ -1,6 +1,10 @@
 package bench;
 
 import jdk.incubator.vector.VectorShuffle;
+import sun.misc.Unsafe;
+
+import java.lang.reflect.Field;
+import java.nio.Buffer;
 
 import static jdk.incubator.vector.FloatVector.SPECIES_128;
 import static jdk.incubator.vector.FloatVector.SPECIES_256;
@@ -19,4 +23,26 @@ class Matrix4fv {
     static final VectorShuffle<Float> s33337777 = SPECIES_256.shuffleFromValues(3, 3, 3, 3, 7, 7, 7, 7); //_MM_SHUFFLE(3, 3, 3, 3)
     static final VectorShuffle<Float> s01230123 = SPECIES_256.shuffleFromValues(0, 1, 2, 3, 0, 1, 2, 3); //_mm256_permute2f128_ps(..., 0x00);
     static final VectorShuffle<Float> s45674567 = SPECIES_256.shuffleFromValues(4, 5, 6, 7, 4, 5, 6, 7); //_mm256_permute2f128_ps(..., 0x11);
+
+    static final Unsafe U = unsafe();
+    static final long O = U.arrayBaseOffset(float[].class);
+    static final long A = bufferAddress();
+
+    private static Unsafe unsafe() {
+        try {
+            Field theUnsafe = Unsafe.class.getDeclaredField("theUnsafe");
+            theUnsafe.setAccessible(true);
+            return (Unsafe) theUnsafe.get(null);
+        } catch (Exception e) {
+            throw new AssertionError(e);
+        }
+    }
+
+    private static long bufferAddress() {
+        try {
+            return U.objectFieldOffset(Buffer.class.getDeclaredField("address"));
+        } catch (Exception e) {
+            throw new AssertionError(e);
+        }
+    }
 }
