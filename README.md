@@ -46,6 +46,7 @@ The x86 code is then printed to stdout. This requires the hsdis utility library 
 # Results
 
 ## Intel Xeon E-2176M
+### With Default Bounds Checks
 ```
 Benchmark                Mode  Cnt   Score   Error  Units
 Bench.mul128LoopArr      avgt    5  32.460 ± 0.374  ns/op
@@ -60,8 +61,24 @@ Bench.mulScalar          avgt    5  18.729 ± 0.075  ns/op
 Bench.mulScalarFma       avgt    5  14.567 ± 0.254  ns/op
 Bench.noopJni            avgt    5  10.811 ± 0.037  ns/op
 ```
+### With -Djdk.incubator.vector.VECTOR_ACCESS_OOB_CHECK=0
+```
+Benchmark                Mode  Cnt   Score   Error  Units
+Bench.mul128LoopArr      avgt    5  21.213 ± 0.153  ns/op
+Bench.mul128LoopBB       avgt    5  26.547 ± 0.087  ns/op
+Bench.mul128UnrolledArr  avgt    5  20.644 ± 0.040  ns/op
+Bench.mul128UnrolledBB   avgt    5  29.801 ± 0.725  ns/op
+Bench.mul256Arr          avgt    5  33.160 ± 0.266  ns/op
+Bench.mul256BB           avgt    5  26.643 ± 0.271  ns/op
+Bench.mulJniAVX          avgt    5  12.957 ± 0.074  ns/op
+Bench.mulJniSSE          avgt    5  14.316 ± 0.105  ns/op
+Bench.mulScalar          avgt    5  19.798 ± 0.133  ns/op
+Bench.mulScalarFma       avgt    5  15.421 ± 1.361  ns/op
+Bench.noopJni            avgt    5  10.744 ± 0.103  ns/op
+```
 
 ## Intel Xeon Platinum 8124M
+### With Default Bounds Checks
 ```
 Benchmark                Mode  Cnt   Score   Error  Units
 Bench.mul128LoopArr      avgt    5  33.849 ± 1.017  ns/op
