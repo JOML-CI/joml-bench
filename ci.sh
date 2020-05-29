@@ -2,7 +2,10 @@
 
 if [ -d "panama-vector" ]; then
   # Pull changes
-  git pull
+  (
+    cd panama-vector
+    git pull
+  )
 else
   # Shallow-clone vectorIntrinsics repo
   git clone --depth=1 --single-branch --branch=vectorIntrinsics https://github.com/openjdk/panama-vector.git
