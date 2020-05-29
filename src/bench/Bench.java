@@ -36,6 +36,11 @@ public class Bench {
     }
 
     @Benchmark
+    public void Matrix4fvArr_storeV512() {
+        m4varr.storeV512(bb);
+    }
+
+    @Benchmark
     public void Matrix4f_storeU() {
         m4.storeU(bb);
     }

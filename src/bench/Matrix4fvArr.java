@@ -112,6 +112,11 @@ public class Matrix4fvArr {
         return bb;
     }
 
+    public ByteBuffer storeV512(ByteBuffer bb) {
+        fromArray(SPECIES_512, es, 0).intoByteBuffer(bb, 0, nativeOrder());
+        return bb;
+    }
+
     public ByteBuffer storeU(ByteBuffer bb) {
         long addr = U.getLong(bb, A);
         for (int i = 0; i < 8; i++) {
