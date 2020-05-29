@@ -113,3 +113,24 @@ Bench.mulScalar          avgt    5  22.179 ± 0.104  ns/op
 Bench.mulScalarFma       avgt    5  16.444 ± 0.024  ns/op
 Bench.noopJni            avgt    5  12.394 ± 0.044  ns/op
 ```
+### With -Djdk.incubator.vector.VECTOR_ACCESS_OOB_CHECK=0 and AbstractShuffle.checkIndexes_Use_VECTOR_ACCESS_OOB_CHECK.patch
+See: https://mail.openjdk.java.net/pipermail/panama-dev/2020-May/009302.html
+```
+Benchmark                     Mode  Cnt   Score   Error  Units
+Bench.Matrix4f_storeU         avgt    5   3.208 ± 0.006  ns/op
+Bench.Matrix4fvArr_storeU     avgt    5   3.435 ± 0.003  ns/op
+Bench.Matrix4fvArr_storeV256  avgt    5   2.554 ± 0.467  ns/op
+Bench.Matrix4fvArr_storeV512  avgt    5  37.813 ± 0.245  ns/op
+Bench.mul128LoopArr           avgt    5   9.560 ± 0.003  ns/op
+Bench.mul128LoopBB            avgt    5  18.107 ± 0.050  ns/op
+Bench.mul128UnrolledArr       avgt    5   9.410 ± 0.015  ns/op
+Bench.mul128UnrolledBB        avgt    5  17.423 ± 0.084  ns/op
+Bench.mul256Arr               avgt    5   9.511 ± 0.007  ns/op
+Bench.mul256BB                avgt    5  12.237 ± 0.012  ns/op
+Bench.mulAffineScalarFma      avgt    5  12.428 ± 0.059  ns/op
+Bench.mulJniAVX               avgt    5  14.754 ± 0.006  ns/op
+Bench.mulJniSSE               avgt    5  14.458 ± 0.001  ns/op
+Bench.mulScalar               avgt    5  22.421 ± 0.036  ns/op
+Bench.mulScalarFma            avgt    5  16.734 ± 0.009  ns/op
+Bench.noopJni                 avgt    5  12.393 ± 0.004  ns/op
+```
