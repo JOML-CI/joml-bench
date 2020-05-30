@@ -156,6 +156,29 @@ Bench.mulScalar               avgt    5  19.038 ±  0.019  ns/op
 Bench.mulScalarFma            avgt    5  14.211 ±  0.006  ns/op
 Bench.noopJni                 avgt    5  10.518 ±  0.001  ns/op
 ```
+### With -XX:UseAVX=3 and -Djdk.incubator.vector.VECTOR_ACCESS_OOB_CHECK=0
+```
+Benchmark                      Mode  Cnt   Score    Error  Units
+Bench.Matrix4f_storePutBB      avgt    5   7.639 ±  0.004  ns/op
+Bench.Matrix4f_storePutFB      avgt    5   4.832 ±  0.010  ns/op
+Bench.Matrix4f_storeU          avgt    5   2.701 ±  0.005  ns/op
+Bench.Matrix4fvArr_storePutFB  avgt    5   4.758 ±  0.001  ns/op
+Bench.Matrix4fvArr_storeU      avgt    5   3.045 ±  0.005  ns/op
+Bench.Matrix4fvArr_storeV256   avgt    5   2.120 ±  0.002  ns/op
+Bench.Matrix4fvArr_storeV512   avgt    5   1.670 ±  0.001  ns/op
+Bench.mul128LoopArr            avgt    5  19.287 ±  0.001  ns/op
+Bench.mul128LoopBB             avgt    5  28.899 ±  0.384  ns/op
+Bench.mul128UnrolledArr        avgt    5  19.033 ±  0.003  ns/op
+Bench.mul128UnrolledBB         avgt    5  28.942 ±  0.223  ns/op
+Bench.mul256Arr                avgt    5  29.369 ±  0.190  ns/op
+Bench.mul256BB                 avgt    5  32.708 ±  0.129  ns/op
+Bench.mulAffineScalarFma       avgt    5   9.864 ±  0.013  ns/op
+Bench.mulJniAVX                avgt    5  12.521 ±  0.001  ns/op
+Bench.mulJniSSE                avgt    5  12.271 ±  0.001  ns/op
+Bench.mulScalar                avgt    5  18.456 ±  0.003  ns/op
+Bench.mulScalarFma             avgt    5  13.836 ±  0.028  ns/op
+Bench.noopJni                  avgt    5  10.519 ±  0.001  ns/op
+```
 ### With -XX:UseAVX=3, -Djdk.incubator.vector.VECTOR_ACCESS_OOB_CHECK=0 and AbstractShuffle.checkIndexes_Use_VECTOR_ACCESS_OOB_CHECK.patch
 ```
 Benchmark                      Mode  Cnt   Score    Error  Units
