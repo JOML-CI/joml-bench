@@ -3,6 +3,7 @@ package bench;
 import jdk.incubator.vector.FloatVector;
 
 import java.nio.ByteBuffer;
+import java.nio.FloatBuffer;
 import java.text.DecimalFormat;
 
 import static bench.Matrix4fv.*;
@@ -104,6 +105,11 @@ public class Matrix4fvArr {
             }
         }
         return str.toString();
+    }
+
+    public FloatBuffer storePut(FloatBuffer fb) {
+        fb.put(0, es, 0, 16);
+        return fb;
     }
 
     public ByteBuffer storeV256(ByteBuffer bb) {

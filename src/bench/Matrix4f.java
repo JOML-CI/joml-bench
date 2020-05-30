@@ -1,6 +1,7 @@
 package bench;
 
 import java.nio.ByteBuffer;
+import java.nio.FloatBuffer;
 import java.text.DecimalFormat;
 
 import static bench.Matrix4fv.A;
@@ -164,6 +165,44 @@ public class Matrix4f {
              + f.format(m01) + " " + f.format(m11) + " " + f.format(m21) + " " + f.format(m31) + "\n"
              + f.format(m02) + " " + f.format(m12) + " " + f.format(m22) + " " + f.format(m32) + "\n"
              + f.format(m03) + " " + f.format(m13) + " " + f.format(m23) + " " + f.format(m33);
+    }
+    public FloatBuffer storePutFB(FloatBuffer fb) {
+        fb.put(0,  m00);
+        fb.put(1,  m01);
+        fb.put(2,  m02);
+        fb.put(3, m03);
+        fb.put(4, m10);
+        fb.put(5, m11);
+        fb.put(6, m12);
+        fb.put(7, m13);
+        fb.put(8, m20);
+        fb.put(9, m21);
+        fb.put(10, m22);
+        fb.put(11, m23);
+        fb.put(12, m30);
+        fb.put(13, m31);
+        fb.put(14, m32);
+        fb.put(15, m33);
+        return fb;
+    }
+    public ByteBuffer storePutBB(ByteBuffer bb) {
+        bb.putFloat(0,  m00);
+        bb.putFloat(4,  m01);
+        bb.putFloat(8,  m02);
+        bb.putFloat(12, m03);
+        bb.putFloat(16, m10);
+        bb.putFloat(20, m11);
+        bb.putFloat(24, m12);
+        bb.putFloat(28, m13);
+        bb.putFloat(32, m20);
+        bb.putFloat(36, m21);
+        bb.putFloat(40, m22);
+        bb.putFloat(44, m23);
+        bb.putFloat(48, m30);
+        bb.putFloat(52, m31);
+        bb.putFloat(56, m32);
+        bb.putFloat(60, m33);
+        return bb;
     }
 
     public ByteBuffer storeU(ByteBuffer bb) {

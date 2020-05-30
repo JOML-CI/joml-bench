@@ -5,8 +5,11 @@ import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
 
 import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.FloatBuffer;
 
 import static java.nio.ByteBuffer.allocateDirect;
+import static java.nio.ByteOrder.nativeOrder;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 import static java.util.concurrent.TimeUnit.NANOSECONDS;
 import static org.openjdk.jmh.annotations.Mode.AverageTime;
@@ -17,13 +20,29 @@ import static org.openjdk.jmh.annotations.Scope.Benchmark;
 @Warmup(iterations = 5, time = 1000, timeUnit = MILLISECONDS)
 @Measurement(iterations = 5, time = 1000, timeUnit = MILLISECONDS)
 @BenchmarkMode(AverageTime)
-@Fork(value = 1, jvmArgsAppend = {"-Djdk.incubator.vector.VECTOR_ACCESS_OOB_CHECK=0"})
+@Fork(value = 1, jvmArgsAppend = {"-XX:UseAVX=3", "-Djdk.incubator.vector.VECTOR_ACCESS_OOB_CHECK=0"})
 public class Bench {
     private final Matrix4f m4 = new Matrix4f();
     private final Matrix4fvBB m4vbb = new Matrix4fvBB();
     private final Matrix4fvArr m4varr = new Matrix4fvArr();
     private final Matrix4fn m4n = new Matrix4fn();
-    private final ByteBuffer bb = allocateDirect(16<<2);
+    private final ByteBuffer bb = allocateDirect(16<<2).order(nativeOrder());
+    private final FloatBuffer fb = bb.asFloatBuffer();
+
+    @Benchmark
+    public void Matrix4f_storePutFB() {
+        m4.storePutFB(fb);
+    }
+
+    @Benchmark
+    public void Matrix4f_storePutBB() {
+        m4.storePutBB(bb);
+    }
+
+    @Benchmark
+    public void Matrix4fvArr_storePutFB() {
+        m4varr.storePut(fb);
+    }
 
     @Benchmark
     public void Matrix4fvArr_storeU() {
