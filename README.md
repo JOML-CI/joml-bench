@@ -152,7 +152,7 @@ Bench.mul128UnrolledBB         avgt    5  34.298 ±  0.054  ns/op
 Bench.mul256Arr                avgt    5  32.896 ±  0.205  ns/op
 Bench.mul256BB                 avgt    5  26.297 ±  0.001  ns/op
 Bench.mulAffineScalarFma       avgt    5   9.925 ±  0.016  ns/op
-Bench.mulJniAVX                avgt    5  15.777 ±  0.003  ns/op
+Bench.mulJniAVX                avgt    5  12.521 ±  0.001  ns/op
 Bench.mulJniSSE                avgt    5  12.271 ±  0.001  ns/op
 Bench.mulScalar                avgt    5  18.463 ±  0.007  ns/op
 Bench.mulScalarFma             avgt    5  13.836 ±  0.003  ns/op
