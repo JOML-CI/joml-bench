@@ -48,18 +48,26 @@ The x86 code is then printed to stdout. This requires the hsdis utility library 
 ## Intel Xeon E-2176M
 ### With Default Bounds Checks
 ```
-Benchmark                Mode  Cnt   Score   Error  Units
-Bench.mul128LoopArr      avgt    5  32.460 ± 0.374  ns/op
-Bench.mul128LoopBB       avgt    5  41.958 ± 0.500  ns/op
-Bench.mul128UnrolledArr  avgt    5  29.327 ± 0.328  ns/op
-Bench.mul128UnrolledBB   avgt    5  37.489 ± 0.718  ns/op
-Bench.mul256Arr          avgt    5  26.298 ± 0.079  ns/op
-Bench.mul256BB           avgt    5  29.945 ± 0.063  ns/op
-Bench.mulJniAVX          avgt    5  13.552 ± 0.031  ns/op
-Bench.mulJniSSE          avgt    5  14.050 ± 0.089  ns/op
-Bench.mulScalar          avgt    5  18.729 ± 0.075  ns/op
-Bench.mulScalarFma       avgt    5  14.567 ± 0.254  ns/op
-Bench.noopJni            avgt    5  10.811 ± 0.037  ns/op
+Benchmark                      Mode  Cnt   Score   Error  Units
+Bench.Matrix4f_storePutBB      avgt    5   7.938 ± 0.166  ns/op
+Bench.Matrix4f_storePutFB      avgt    5   6.243 ± 0.033  ns/op
+Bench.Matrix4f_storeU          avgt    5   2.599 ± 0.011  ns/op
+Bench.Matrix4fvArr_storePutFB  avgt    5   4.995 ± 0.014  ns/op
+Bench.Matrix4fvArr_storeU      avgt    5   2.796 ± 0.007  ns/op
+Bench.Matrix4fvArr_storeV256   avgt    5   3.021 ± 0.006  ns/op
+Bench.Matrix4fvArr_storeV512   avgt    5  35.075 ± 4.576  ns/op
+Bench.mul128LoopArr            avgt    5  31.259 ± 0.797  ns/op
+Bench.mul128LoopBB             avgt    5  28.592 ± 0.181  ns/op
+Bench.mul128UnrolledArr        avgt    5  30.338 ± 1.197  ns/op
+Bench.mul128UnrolledBB         avgt    5  35.368 ± 0.125  ns/op
+Bench.mul256Arr                avgt    5  29.858 ± 0.293  ns/op
+Bench.mul256BB                 avgt    5  37.207 ± 0.097  ns/op
+Bench.mulAffineScalarFma       avgt    5  11.251 ± 0.065  ns/op
+Bench.mulJniAVX                avgt    5  13.405 ± 0.049  ns/op
+Bench.mulJniSSE                avgt    5  14.204 ± 0.075  ns/op
+Bench.mulScalar                avgt    5  19.536 ± 0.984  ns/op
+Bench.mulScalarFma             avgt    5  13.224 ± 0.082  ns/op
+Bench.noopJni                  avgt    5   9.816 ± 0.045  ns/op
 ```
 ### With -Djdk.incubator.vector.VECTOR_ACCESS_OOB_CHECK=0
 ```
