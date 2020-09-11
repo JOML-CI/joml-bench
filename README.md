@@ -63,18 +63,26 @@ Bench.noopJni            avgt    5  10.811 ± 0.037  ns/op
 ```
 ### With -Djdk.incubator.vector.VECTOR_ACCESS_OOB_CHECK=0
 ```
-Benchmark                Mode  Cnt   Score   Error  Units
-Bench.mul128LoopArr      avgt    5  21.213 ± 0.153  ns/op
-Bench.mul128LoopBB       avgt    5  26.547 ± 0.087  ns/op
-Bench.mul128UnrolledArr  avgt    5  20.644 ± 0.040  ns/op
-Bench.mul128UnrolledBB   avgt    5  29.801 ± 0.725  ns/op
-Bench.mul256Arr          avgt    5  33.160 ± 0.266  ns/op
-Bench.mul256BB           avgt    5  26.643 ± 0.271  ns/op
-Bench.mulJniAVX          avgt    5  12.957 ± 0.074  ns/op
-Bench.mulJniSSE          avgt    5  14.316 ± 0.105  ns/op
-Bench.mulScalar          avgt    5  19.798 ± 0.133  ns/op
-Bench.mulScalarFma       avgt    5  15.421 ± 1.361  ns/op
-Bench.noopJni            avgt    5  10.744 ± 0.103  ns/op
+Benchmark                      Mode  Cnt   Score   Error  Units
+Bench.Matrix4f_storePutBB      avgt    5   8.409 ± 0.241  ns/op
+Bench.Matrix4f_storePutFB      avgt    5   5.325 ± 0.023  ns/op
+Bench.Matrix4f_storeU          avgt    5   2.721 ± 0.020  ns/op
+Bench.Matrix4fvArr_storePutFB  avgt    5   4.789 ± 0.045  ns/op
+Bench.Matrix4fvArr_storeU      avgt    5   2.956 ± 0.036  ns/op
+Bench.Matrix4fvArr_storeV256   avgt    5   2.303 ± 0.005  ns/op
+Bench.Matrix4fvArr_storeV512   avgt    5  35.158 ± 1.596  ns/op
+Bench.mul128LoopArr            avgt    5  21.667 ± 0.109  ns/op
+Bench.mul128LoopBB             avgt    5  25.870 ± 0.062  ns/op
+Bench.mul128UnrolledArr        avgt    5  25.297 ± 0.342  ns/op
+Bench.mul128UnrolledBB         avgt    5  26.480 ± 0.072  ns/op
+Bench.mul256Arr                avgt    5  33.100 ± 0.103  ns/op
+Bench.mul256BB                 avgt    5  33.490 ± 0.258  ns/op
+Bench.mulAffineScalarFma       avgt    5  11.040 ± 0.086  ns/op
+Bench.mulJniAVX                avgt    5  13.501 ± 0.060  ns/op
+Bench.mulJniSSE                avgt    5  14.186 ± 0.190  ns/op
+Bench.mulScalar                avgt    5  17.892 ± 0.021  ns/op
+Bench.mulScalarFma             avgt    5  13.396 ± 0.062  ns/op
+Bench.noopJni                  avgt    5  10.562 ± 0.075  ns/op
 ```
 ### With -Djdk.incubator.vector.VECTOR_ACCESS_OOB_CHECK=0 and AbstractShuffle.checkIndexes_Use_VECTOR_ACCESS_OOB_CHECK.patch
 See: https://mail.openjdk.java.net/pipermail/panama-dev/2020-May/009302.html
