@@ -17,8 +17,7 @@ In addition, the hsdis utility library is built and installed into the JDK's lib
 ## Clean Ubuntu Setup (tested on Ubuntu 20.04)
 
 ```
-sudo apt install -y openjdk-14-jdk-headless \
-                    libasound2-dev \
+sudo apt install -y libasound2-dev \
                     libfontconfig1-dev \
                     libcups2-dev \
                     libx11-dev \
