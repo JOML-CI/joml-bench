@@ -1,5 +1,14 @@
 #!/bin/bash
 
+if [ ! -d "jdk-15.0.2" ]; then
+  # Download JDK15 Linux x64 build
+  wget https://download.java.net/java/GA/jdk15.0.2/0d1cfde4252546c6931946de8db48ee2/7/GPL/openjdk-15.0.2_linux-x64_bin.tar.gz
+  tar xf openjdk-15.0.2_linux-x64_bin.tar.gz
+  rm openjdk-15.0.2_linux-x64_bin.tar.gz
+fi
+
+export JAVA_HOME=$(pwd)/jdk-15.0.2
+
 if [ -d "panama-vector" ]; then
   # Pull changes
   (
