@@ -5,7 +5,6 @@ import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
 
 import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 
 import static java.nio.ByteBuffer.allocateDirect;
@@ -25,12 +24,11 @@ public class Bench {
     private final Matrix4f m4 = new Matrix4f();
     private final Matrix4fvBB m4vbb = new Matrix4fvBB();
     private final Matrix4fvArr m4varr = new Matrix4fvArr();
-    private final Matrix4fn m4n = new Matrix4fn();
     private final ByteBuffer bb = allocateDirect(16<<2).order(nativeOrder());
     private final FloatBuffer fb = bb.asFloatBuffer();
 
     @Benchmark
-    public void Matrix4f_invert() {
+    public void Matrix4fvArr_invert() {
         m4.invert(m4);
     }
 
@@ -39,97 +37,82 @@ public class Bench {
         m4varr.invert128(m4varr);
     }
 
-    @Benchmark
+    //@Benchmark
     public void Matrix4f_storePutFB() {
         m4.storePutFB(fb);
     }
 
-    @Benchmark
+    //@Benchmark
     public void Matrix4f_storePutBB() {
         m4.storePutBB(bb);
     }
 
-    @Benchmark
+    //@Benchmark
     public void Matrix4fvArr_storePutFB() {
         m4varr.storePut(fb);
     }
 
-    @Benchmark
+    //@Benchmark
     public void Matrix4fvArr_storeU() {
         m4varr.storeU(bb);
     }
 
-    @Benchmark
+    //@Benchmark
     public void Matrix4fvArr_storeV256() {
         m4varr.storeV256(bb);
     }
 
-    @Benchmark
+    //@Benchmark
     public void Matrix4fvArr_storeV512() {
         m4varr.storeV512(bb);
     }
 
-    @Benchmark
+    //@Benchmark
     public void Matrix4f_storeU() {
         m4.storeU(bb);
     }
 
-    @Benchmark
-    public Object noopJni() {
-        return m4n.noop(m4n);
-    }
-
-    @Benchmark
-    public Object mulJniSSE() {
-        return m4n.mulSSE(m4n);
-    }
-
-    @Benchmark
-    public Object mulJniAVX() {
-        return m4n.mulAVX(m4n);
-    }
-
-    @Benchmark
+    //@Benchmark
     public Object mulScalar() {
         return m4.mul(m4);
     }
 
-    @Benchmark
+    //@Benchmark
     public Object mulScalarFma() {
         return m4.mulFma(m4);
     }
 
-    @Benchmark
+    //@Benchmark
     public Object mulAffineScalarFma() {
         return m4.mulAffineFma(m4);
     }
 
-    @Benchmark
+    //@Benchmark
     public Object mul256Arr() {
         return m4varr.mul256(m4varr);
     }
 
-    @Benchmark
+    //@Benchmark
     public Object mul128UnrolledArr() {
         return m4varr.mul128Unrolled(m4varr);
     }
 
-    @Benchmark
+    //@Benchmark
     public Object mul128LoopArr() {
         return m4varr.mul128Loop(m4varr);
     }
 
-    @Benchmark
+    //@Benchmark
     public Object mul256BB() {
         return m4vbb.mul256(m4vbb);
     }
 
-    @Benchmark
+    //@Benchmark
     public Object mul128UnrolledBB() {
         return m4vbb.mul128Unrolled(m4vbb);
     }
 
-    @Benchmark
+    //@Benchmark
     public Object mul128LoopBB() {
         return m4vbb.mul128Loop(m4vbb);
     }
