@@ -17,6 +17,10 @@ class Matrix4fv {
     static final VectorShuffle<Float> s1111 = SPECIES_128.shuffleFromValues(1, 1, 1, 1);
     static final VectorShuffle<Float> s2222 = SPECIES_128.shuffleFromValues(2, 2, 2, 2);
     static final VectorShuffle<Float> s3333 = SPECIES_128.shuffleFromValues(3, 3, 3, 3);
+    static final VectorShuffle<Float> s0415 = SPECIES_128.shuffleFromValues(0, 4, 1, 5);
+    static final VectorShuffle<Float> s2637 = SPECIES_128.shuffleFromValues(2, 6, 3, 7);
+    static final VectorShuffle<Float> s2301 = SPECIES_128.shuffleFromValues(2, 3, 0, 1);
+    static final VectorShuffle<Float> s1032 = SPECIES_128.shuffleFromValues(1, 0, 3, 2);
     static final VectorShuffle<Float> s00004444 = SPECIES_256.shuffleFromValues(0, 0, 0, 0, 4, 4, 4, 4); //_MM_SHUFFLE(0, 0, 0, 0)
     static final VectorShuffle<Float> s11115555 = SPECIES_256.shuffleFromValues(1, 1, 1, 1, 5, 5, 5, 5); //_MM_SHUFFLE(1, 1, 1, 1)
     static final VectorShuffle<Float> s22226666 = SPECIES_256.shuffleFromValues(2, 2, 2, 2, 6, 6, 6, 6); //_MM_SHUFFLE(2, 2, 2, 2)

@@ -30,6 +30,16 @@ public class Bench {
     private final FloatBuffer fb = bb.asFloatBuffer();
 
     @Benchmark
+    public void Matrix4f_invert() {
+        m4.invert(m4);
+    }
+
+    @Benchmark
+    public void Matrix4fva_invert() {
+        m4varr.invert128(m4varr);
+    }
+
+    @Benchmark
     public void Matrix4f_storePutFB() {
         m4.storePutFB(fb);
     }

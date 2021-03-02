@@ -159,6 +159,56 @@ public class Matrix4f {
         return this;
     }
 
+    public Matrix4f invert(Matrix4f dest) {
+        float a = m00 * m11 - m01 * m10;
+        float b = m00 * m12 - m02 * m10;
+        float c = m00 * m13 - m03 * m10;
+        float d = m01 * m12 - m02 * m11;
+        float e = m01 * m13 - m03 * m11;
+        float f = m02 * m13 - m03 * m12;
+        float g = m20 * m31 - m21 * m30;
+        float h = m20 * m32 - m22 * m30;
+        float i = m20 * m33 - m23 * m30;
+        float j = m21 * m32 - m22 * m31;
+        float k = m21 * m33 - m23 * m31;
+        float l = m22 * m33 - m23 * m32;
+        float det = a * l - b * k + c * j + d * i - e * h + f * g;
+        det = 1.0f / det;
+        float nm00 = Math.fma( m11, l, Math.fma(-m12, k,  m13 * j)) * det;
+        float nm01 = Math.fma(-m01, l, Math.fma( m02, k, -m03 * j)) * det;
+        float nm02 = Math.fma( m31, f, Math.fma(-m32, e,  m33 * d)) * det;
+        float nm03 = Math.fma(-m21, f, Math.fma( m22, e, -m23 * d)) * det;
+        float nm10 = Math.fma(-m10, l, Math.fma( m12, i, -m13 * h)) * det;
+        float nm11 = Math.fma( m00, l, Math.fma(-m02, i,  m03 * h)) * det;
+        float nm12 = Math.fma(-m30, f, Math.fma( m32, c, -m33 * b)) * det;
+        float nm13 = Math.fma( m20, f, Math.fma(-m22, c,  m23 * b)) * det;
+        float nm20 = Math.fma( m10, k, Math.fma(-m11, i,  m13 * g)) * det;
+        float nm21 = Math.fma(-m00, k, Math.fma( m01, i, -m03 * g)) * det;
+        float nm22 = Math.fma( m30, e, Math.fma(-m31, c,  m33 * a)) * det;
+        float nm23 = Math.fma(-m20, e, Math.fma( m21, c, -m23 * a)) * det;
+        float nm30 = Math.fma(-m10, j, Math.fma( m11, h, -m12 * g)) * det;
+        float nm31 = Math.fma( m00, j, Math.fma(-m01, h,  m02 * g)) * det;
+        float nm32 = Math.fma(-m30, d, Math.fma( m31, b, -m32 * a)) * det;
+        float nm33 = Math.fma( m20, d, Math.fma(-m21, b,  m22 * a)) * det;
+        dest.m00 = nm00;
+        dest.m01 = nm01;
+        dest.m02 = nm02;
+        dest.m03 = nm03;
+        dest.m10 = nm10;
+        dest.m11 = nm11;
+        dest.m12 = nm12;
+        dest.m13 = nm13;
+        dest.m20 = nm20;
+        dest.m21 = nm21;
+        dest.m22 = nm22;
+        dest.m23 = nm23;
+        dest.m30 = nm30;
+        dest.m31 = nm31;
+        dest.m32 = nm32;
+        dest.m33 = nm33;
+        return dest;
+    }
+
     public String toString() {
         DecimalFormat f = new DecimalFormat(" 0.000E0;-");
         return f.format(m00) + " " + f.format(m10) + " " + f.format(m20) + " " + f.format(m30) + "\n"
