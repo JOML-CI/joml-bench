@@ -28,91 +28,91 @@ public class Bench {
     private final FloatBuffer fb = bb.asFloatBuffer();
 
     @Benchmark
-    public void Matrix4fvArr_invert() {
+    public void Matrix4f_invert() {
         m4.invert(m4);
     }
 
     @Benchmark
-    public void Matrix4fva_invert() {
+    public void Matrix4fvArr_invert128() {
         m4varr.invert128(m4varr);
     }
 
-    //@Benchmark
+    @Benchmark
     public void Matrix4f_storePutFB() {
         m4.storePutFB(fb);
     }
 
-    //@Benchmark
+    @Benchmark
     public void Matrix4f_storePutBB() {
         m4.storePutBB(bb);
     }
 
-    //@Benchmark
+    @Benchmark
     public void Matrix4fvArr_storePutFB() {
         m4varr.storePut(fb);
     }
 
-    //@Benchmark
+    @Benchmark
     public void Matrix4fvArr_storeU() {
         m4varr.storeU(bb);
     }
 
-    //@Benchmark
+    @Benchmark
     public void Matrix4fvArr_storeV256() {
         m4varr.storeV256(bb);
     }
 
-    //@Benchmark
+    @Benchmark
     public void Matrix4fvArr_storeV512() {
         m4varr.storeV512(bb);
     }
 
-    //@Benchmark
+    @Benchmark
     public void Matrix4f_storeU() {
         m4.storeU(bb);
     }
 
-    //@Benchmark
+    @Benchmark
     public Object mulScalar() {
         return m4.mul(m4);
     }
 
-    //@Benchmark
+    @Benchmark
     public Object mulScalarFma() {
         return m4.mulFma(m4);
     }
 
-    //@Benchmark
+    @Benchmark
     public Object mulAffineScalarFma() {
         return m4.mulAffineFma(m4);
     }
 
-    //@Benchmark
+    @Benchmark
     public Object mul256Arr() {
         return m4varr.mul256(m4varr);
     }
 
-    //@Benchmark
+    @Benchmark
     public Object mul128UnrolledArr() {
         return m4varr.mul128Unrolled(m4varr);
     }
 
-    //@Benchmark
+    @Benchmark
     public Object mul128LoopArr() {
         return m4varr.mul128Loop(m4varr);
     }
 
-    //@Benchmark
+    @Benchmark
     public Object mul256BB() {
         return m4vbb.mul256(m4vbb);
     }
 
-    //@Benchmark
+    @Benchmark
     public Object mul128UnrolledBB() {
         return m4vbb.mul128Unrolled(m4vbb);
     }
 
-    //@Benchmark
+    @Benchmark
     public Object mul128LoopBB() {
         return m4vbb.mul128Loop(m4vbb);
     }
