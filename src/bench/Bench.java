@@ -22,10 +22,26 @@ import static org.openjdk.jmh.annotations.Scope.Benchmark;
 @Fork(value = 1, jvmArgsAppend = {"-XX:UseAVX=3", "-Djdk.incubator.vector.VECTOR_ACCESS_OOB_CHECK=0"})
 public class Bench {
     private final Matrix4f m4 = new Matrix4f();
+    private final Matrix4fn m4n = new Matrix4fn();
     private final Matrix4fvBB m4vbb = new Matrix4fvBB();
     private final Matrix4fvArr m4varr = new Matrix4fvArr();
     private final ByteBuffer bb = allocateDirect(16<<2).order(nativeOrder());
     private final FloatBuffer fb = bb.asFloatBuffer();
+
+    @Benchmark
+    public void Matrix4fn_noop() {
+        m4n.noop(m4n);
+    }
+
+    @Benchmark
+    public void Matrix4fn_mulSSE() {
+        m4n.mulSSE(m4n);
+    }
+
+    @Benchmark
+    public void Matrix4fn_mulAVX() {
+        m4n.mulAVX(m4n);
+    }
 
     @Benchmark
     public void Matrix4f_invert() {

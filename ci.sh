@@ -17,7 +17,7 @@ if [ -d "panama-vector" ]; then
   )
 else
   # Shallow-clone vectorIntrinsics repo
-  git clone --depth=1 --single-branch --branch=vectorIntrinsics https://github.com/openjdk/panama-vector.git
+  git clone --depth=1 --single-branch --branch=vectorIntrinsics+mask https://github.com/openjdk/panama-vector.git
   # Configure rebase and autostash
   (
     cd panama-vector

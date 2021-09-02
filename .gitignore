@@ -1,5 +1,6 @@
 /.idea/
 /binutils-2.32/
+/jdk-16/
 /native/build/
 /native/*.[is]
 /panama-vector/
