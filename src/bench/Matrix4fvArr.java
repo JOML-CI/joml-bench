@@ -25,6 +25,28 @@ public class Matrix4fvArr {
         es[15] = 1f;
     }
 
+    public Matrix4fvArr(float m00, float m01, float m02, float m03,
+                        float m10, float m11, float m12, float m13,
+                        float m20, float m21, float m22, float m23,
+                        float m30, float m31, float m32, float m33) {
+        es[0] = m00;
+        es[1] = m01;
+        es[2] = m02;
+        es[3] = m03;
+        es[4] = m10;
+        es[5] = m11;
+        es[6] = m12;
+        es[7] = m13;
+        es[8] = m20;
+        es[9] = m21;
+        es[10] = m22;
+        es[11] = m23;
+        es[12] = m30;
+        es[13] = m31;
+        es[14] = m32;
+        es[15] = m33;
+    }
+
     public Matrix4fvArr mul128Loop(Matrix4fvArr o) {
         /*
          * Adapted from:
@@ -90,6 +112,34 @@ public class Matrix4fvArr {
                 .add(t1.rearrange(s33337777).fma(u1r11, t1.rearrange(s22226666).mul(u1r00)))
                 .intoArray(es, 8);
         return this;
+    }
+
+    public Matrix4fvArr transpose(Matrix4fvArr dest) {
+        FloatVector col0 = fromArray(SPECIES_128, es, 0);
+        FloatVector col1 = fromArray(SPECIES_128, es, 4);
+        FloatVector col2 = fromArray(SPECIES_128, es, 8);
+        FloatVector col3 = fromArray(SPECIES_128, es, 12);
+        // tmp0 = _mm_shuffle_ps(row0, row1, 0x44);
+        FloatVector tmp0 = col0.rearrange(s0145, col1);
+        // tmp2 = _mm_shuffle_ps(row0, row1, 0xEE);
+        FloatVector tmp2 = col0.rearrange(s2367, col1);
+        // tmp1 = _mm_shuffle_ps(row2, row3, 0x44);
+        FloatVector tmp1 = col2.rearrange(s0145, col3);
+        // tmp3 = _mm_shuffle_ps(row2, row3, 0xEE);
+        FloatVector tmp3 = col2.rearrange(s2367, col3);
+        // row0 = _mm_shuffle_ps(tmp0, tmp1, 0x88);
+        FloatVector row0 = tmp0.rearrange(s0246, tmp1);
+        // row1 = _mm_shuffle_ps(tmp0, tmp1, 0xDD);
+        FloatVector row1 = tmp0.rearrange(s1357, tmp1);
+        // row2 = _mm_shuffle_ps(tmp2, tmp3, 0x88);
+        FloatVector row2 = tmp2.rearrange(s0246, tmp3);
+        // row3 = _mm_shuffle_ps(tmp2, tmp3, 0xDD);
+        FloatVector row3 = tmp2.rearrange(s1357, tmp3);
+        row0.intoArray(dest.es, 0);
+        row1.intoArray(dest.es, 4);
+        row2.intoArray(dest.es, 8);
+        row3.intoArray(dest.es, 12);
+        return dest;
     }
 
     public Matrix4fvArr invert128(Matrix4fvArr dest) {
@@ -271,11 +321,7 @@ public class Matrix4fvArr {
     }
 
     public static void main(String[] args) {
-        System.out.println(new Matrix4fvArr().mul128Loop(new Matrix4fvArr()));
-        System.out.println("----");
-        System.out.println(new Matrix4fvArr().mul128Unrolled(new Matrix4fvArr()));
-        System.out.println("----");
-        System.out.println(new Matrix4fvArr().mul256(new Matrix4fvArr()));
+        System.out.println(new Matrix4fvArr(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16).transpose(new Matrix4fvArr()));
     }
 
 }

@@ -44,6 +44,16 @@ public class Bench {
     }
 
     @Benchmark
+    public void Matrix4f_transpose() {
+        m4.transpose(m4);
+    }
+
+    @Benchmark
+    public void Matrix4fvArr_transpose() {
+        m4varr.transpose(m4varr);
+    }
+
+    @Benchmark
     public void Matrix4f_invert() {
         m4.invert(m4);
     }

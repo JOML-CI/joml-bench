@@ -127,6 +127,28 @@ public class Matrix4f {
         return this;
     }
 
+    public Matrix4f transpose(Matrix4f dest) {
+        float nm10 = m01;
+        float nm20 = m02;
+        float nm21 = m12;
+        float nm30 = m03;
+        float nm31 = m13;
+        float nm32 = m23;
+        dest.m01 = m10;
+        dest.m02 = m20;
+        dest.m03 = m30;
+        dest.m10 = nm10;
+        dest.m12 = m21;
+        dest.m13 = m31;
+        dest.m20 = nm20;
+        dest.m21 = nm21;
+        dest.m23 = m32;
+        dest.m30 = nm30;
+        dest.m31 = nm31;
+        dest.m32 = nm32;
+        return dest;
+    }
+
     public Matrix4f mulAffineFma(Matrix4f right) {
         float nm00 = Math.fma(m00, right.m00, Math.fma(m10, right.m01, m20 * right.m02));
         float nm01 = Math.fma(m01, right.m00, Math.fma(m11, right.m01, m21 * right.m02));
