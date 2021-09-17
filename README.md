@@ -48,25 +48,27 @@ The x86 code is then printed to stdout. This requires the hsdis utility library 
 ### With -Djdk.incubator.vector.VECTOR_ACCESS_OOB_CHECK=0
 ```
 Benchmark                      Mode  Cnt   Score   Error  Units
-Bench.Matrix4f_invert          avgt   30  23.865 ± 0.268  ns/op
-Bench.Matrix4f_storePutBB      avgt   30   6.982 ± 0.010  ns/op
-Bench.Matrix4f_storePutFB      avgt   30   4.408 ± 0.011  ns/op
-Bench.Matrix4f_storeU          avgt   30   2.535 ± 0.006  ns/op
-Bench.Matrix4fn_mulAVX         avgt   30  11.650 ± 0.020  ns/op
-Bench.Matrix4fn_mulSSE         avgt   30  14.461 ± 0.797  ns/op
-Bench.Matrix4fn_noop           avgt   30   8.726 ± 0.012  ns/op
-Bench.Matrix4fvArr_invert128   avgt   30  91.663 ± 0.512  ns/op
-Bench.Matrix4fvArr_storePutFB  avgt   30   4.770 ± 0.004  ns/op
-Bench.Matrix4fvArr_storeU      avgt   30   2.789 ± 0.003  ns/op
-Bench.Matrix4fvArr_storeV256   avgt   30   1.818 ± 0.047  ns/op
-Bench.Matrix4fvArr_storeV512   avgt   30  33.289 ± 0.649  ns/op
-Bench.mul128LoopArr            avgt   30   8.030 ± 0.254  ns/op
-Bench.mul128LoopBB             avgt   30   7.846 ± 0.034  ns/op
-Bench.mul128UnrolledArr        avgt   30   8.591 ± 0.016  ns/op
-Bench.mul128UnrolledBB         avgt   30  10.092 ± 0.092  ns/op
-Bench.mul256Arr                avgt   30   7.477 ± 0.008  ns/op
-Bench.mul256BB                 avgt   30   7.389 ± 0.184  ns/op
-Bench.mulAffineScalarFma       avgt   30  12.701 ± 0.617  ns/op
-Bench.mulScalar                avgt   30  19.308 ± 0.554  ns/op
-Bench.mulScalarFma             avgt   30  15.267 ± 0.539  ns/op
+Bench.Matrix4f_invert          avgt    5  23.694 ± 3.175  ns/op
+Bench.Matrix4f_storePutBB      avgt    5   7.284 ± 0.043  ns/op
+Bench.Matrix4f_storePutFB      avgt    5   5.389 ± 0.281  ns/op
+Bench.Matrix4f_storeU          avgt    5   3.058 ± 0.039  ns/op
+Bench.Matrix4f_transpose       avgt    5   4.467 ± 1.334  ns/op
+Bench.Matrix4fn_mulAVX         avgt    5  11.730 ± 0.308  ns/op
+Bench.Matrix4fn_mulSSE         avgt    5  11.566 ± 0.492  ns/op
+Bench.Matrix4fn_noop           avgt    5   9.290 ± 0.832  ns/op
+Bench.Matrix4fvArr_invert128   avgt    5  93.220 ± 6.345  ns/op
+Bench.Matrix4fvArr_storePutFB  avgt    5   5.138 ± 0.117  ns/op
+Bench.Matrix4fvArr_storeU      avgt    5   3.400 ± 0.105  ns/op
+Bench.Matrix4fvArr_storeV256   avgt    5   1.763 ± 0.060  ns/op
+Bench.Matrix4fvArr_storeV512   avgt    5  34.234 ± 5.885  ns/op
+Bench.Matrix4fvArr_transpose   avgt    5  73.953 ± 0.529  ns/op
+Bench.mul128LoopArr            avgt    5   8.328 ± 0.367  ns/op
+Bench.mul128LoopBB             avgt    5   8.463 ± 0.036  ns/op
+Bench.mul128UnrolledArr        avgt    5   8.655 ± 0.211  ns/op
+Bench.mul128UnrolledBB         avgt    5  10.150 ± 0.442  ns/op
+Bench.mul256Arr                avgt    5   8.203 ± 1.434  ns/op
+Bench.mul256BB                 avgt    5   7.559 ± 0.906  ns/op
+Bench.mulAffineScalarFma       avgt    5  11.682 ± 1.950  ns/op
+Bench.mulScalar                avgt    5  17.988 ± 1.929  ns/op
+Bench.mulScalarFma             avgt    5  14.134 ± 0.835  ns/op
 ```
