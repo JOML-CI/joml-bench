@@ -14,7 +14,7 @@ This will shallow-clone the [GitHub mirror of the Panama vectorIntrinsics branch
 The space requirements for such a cloned and fully built JDK is ~5.6GB, which will reside inside of the panama-vector directory.
 In addition, the hsdis utility library is built and installed into the JDK's lib directory.
 
-## Clean Ubuntu Setup (tested on Ubuntu 20.04)
+## Clean Ubuntu Setup (tested on Ubuntu 22.04)
 
 ```
 sudo apt install -y libasound2-dev \
@@ -31,7 +31,8 @@ sudo apt install -y libasound2-dev \
                     unzip \
                     automake \
                     autoconf \
-                    build-essential
+                    build-essential \
+                    openjdk-18-jdk
 ```
 
 ## Seeing the disassembly

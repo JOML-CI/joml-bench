@@ -1,5 +1,6 @@
 package bench;
 
+import jdk.incubator.foreign.MemorySegment;
 import jdk.incubator.vector.FloatVector;
 
 import java.nio.ByteBuffer;
@@ -302,13 +303,15 @@ public class Matrix4fvArr {
     }
 
     public ByteBuffer storeV256(ByteBuffer bb) {
-        fromArray(SPECIES_256, es, 0).intoByteBuffer(bb, 0, nativeOrder());
-        fromArray(SPECIES_256, es, 8).intoByteBuffer(bb, 32, nativeOrder());
+        MemorySegment ms = MemorySegment.ofByteBuffer(bb);
+        fromArray(SPECIES_256, es, 0).intoMemorySegment(ms, 0, nativeOrder());
+        fromArray(SPECIES_256, es, 8).intoMemorySegment(ms, 32, nativeOrder());
         return bb;
     }
 
     public ByteBuffer storeV512(ByteBuffer bb) {
-        fromArray(SPECIES_512, es, 0).intoByteBuffer(bb, 0, nativeOrder());
+        MemorySegment ms = MemorySegment.ofByteBuffer(bb);
+        fromArray(SPECIES_512, es, 0).intoMemorySegment(ms, 0, nativeOrder());
         return bb;
     }
 

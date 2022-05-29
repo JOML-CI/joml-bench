@@ -1,14 +1,5 @@
 #!/bin/bash
 
-if [ ! -d "jdk-17" ]; then
-  # Download JDK17 Linux x64 build
-  wget -O jdk-17.tar.gz https://download.java.net/java/GA/jdk17/0d483333a00540d886896bac774ff48b/35/GPL/openjdk-17_linux-x64_bin.tar.gz
-  tar xf jdk-17.tar.gz
-  rm jdk-17.tar.gz
-fi
-
-export JAVA_HOME=$(pwd)/jdk-17
-
 if [ -d "panama-vector" ]; then
   # Pull changes
   (
@@ -17,7 +8,7 @@ if [ -d "panama-vector" ]; then
   )
 else
   # Shallow-clone vectorIntrinsics repo
-  git clone --depth=1 --single-branch --branch=vectorIntrinsics+mask https://github.com/openjdk/panama-vector.git
+  git clone --depth=1 --single-branch --branch=vectorIntrinsics https://github.com/openjdk/panama-vector.git
   # Configure rebase and autostash
   (
     cd panama-vector
