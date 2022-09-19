@@ -1,6 +1,6 @@
 package bench;
 
-import jdk.incubator.foreign.MemorySegment;
+import java.lang.foreign.MemorySegment;
 import jdk.incubator.vector.FloatVector;
 
 import java.nio.ByteBuffer;
@@ -31,8 +31,8 @@ public class Matrix4fvBB {
          * Adapted from:
          * https://stackoverflow.com/questions/18499971/efficient-4x4-matrix-multiplication-c-vs-assembly#answer-18508113
          */
-        MemorySegment oms = MemorySegment.ofByteBuffer(o.es);
-        MemorySegment tms = MemorySegment.ofByteBuffer(es);
+        MemorySegment oms = MemorySegment.ofBuffer(o.es);
+        MemorySegment tms = MemorySegment.ofBuffer(es);
         FloatVector row1 = fromMemorySegment(SPECIES_128, oms, 0, nativeOrder());
         FloatVector row2 = fromMemorySegment(SPECIES_128, oms, 16, nativeOrder());
         FloatVector row3 = fromMemorySegment(SPECIES_128, oms, 32, nativeOrder());
@@ -57,8 +57,8 @@ public class Matrix4fvBB {
          * Adapted from:
          * https://stackoverflow.com/questions/18499971/efficient-4x4-matrix-multiplication-c-vs-assembly#answer-18508113
          */
-        MemorySegment oms = MemorySegment.ofByteBuffer(o.es);
-        MemorySegment tms = MemorySegment.ofByteBuffer(es);
+        MemorySegment oms = MemorySegment.ofBuffer(o.es);
+        MemorySegment tms = MemorySegment.ofBuffer(es);
         FloatVector row1 = fromMemorySegment(SPECIES_128, oms, 0, nativeOrder());
         FloatVector row2 = fromMemorySegment(SPECIES_128, oms, 16, nativeOrder());
         FloatVector row3 = fromMemorySegment(SPECIES_128, oms, 32, nativeOrder());
@@ -80,8 +80,8 @@ public class Matrix4fvBB {
          * Adapted from:
          * https://stackoverflow.com/questions/19806222/matrix-vector-multiplication-in-avx-not-proportionately-faster-than-in-sse#answer-46058667
          */
-        MemorySegment oms = MemorySegment.ofByteBuffer(o.es);
-        MemorySegment tms = MemorySegment.ofByteBuffer(es);
+        MemorySegment oms = MemorySegment.ofBuffer(o.es);
+        MemorySegment tms = MemorySegment.ofBuffer(es);
         FloatVector t0 = fromMemorySegment(SPECIES_256, tms, 0, nativeOrder());
         FloatVector t1 = fromMemorySegment(SPECIES_256, tms, 32, nativeOrder());
         FloatVector u0 = fromMemorySegment(SPECIES_256, oms, 0, nativeOrder());

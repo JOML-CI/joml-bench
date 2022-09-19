@@ -8,7 +8,7 @@ if [ -d "panama-vector" ]; then
   )
 else
   # Shallow-clone vectorIntrinsics repo
-  git clone --depth=1 --single-branch --branch=vectorIntrinsics https://github.com/openjdk/panama-vector.git
+  git clone --depth=1 --single-branch --branch=master https://github.com/openjdk/panama-vector.git
   # Configure rebase and autostash
   (
     cd panama-vector
@@ -44,4 +44,4 @@ BINUTILS=$(pwd)/binutils-2.32
 )
 
 # Build and run the benchmarks
-./mvnw package && java --add-modules jdk.incubator.vector -jar target/bench.jar
+./mvnw package && java --enable-preview --add-modules jdk.incubator.vector -jar target/bench.jar
