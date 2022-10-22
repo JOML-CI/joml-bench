@@ -6,13 +6,21 @@
 #include <stdlib.h>
 
 JNIEXPORT jlong JNICALL Java_bench_Matrix4fn_allocate(JNIEnv* env, jclass clazz) {
+#if defined(_WIN32) || defined(WIN32)
+    return (jlong)(intptr_t)_aligned_malloc(16<<2,32);
+#else
     void* ptr;
     if (posix_memalign(&ptr, 32, 16 << 2) == 0)
         return (jlong)(intptr_t)ptr;
     return 0L;
+#endif
 }
 JNIEXPORT void JNICALL Java_bench_Matrix4fn_free(JNIEnv* env, jclass clazz, jlong mem) {
+#if defined(_WIN32) || defined(WIN32)
+    _aligned_free((void*)(intptr_t)mem);
+#else
     free((void*)(intptr_t)mem);
+#endif
 }
 
 /*

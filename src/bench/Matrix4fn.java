@@ -7,7 +7,7 @@ import java.io.File;
  */
 public class Matrix4fn {
     static {
-        System.load(new File("native/build/libjoml.so").getAbsolutePath());
+        System.loadLibrary("joml");
     }
 
     private final long addr = allocate();

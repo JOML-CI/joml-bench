@@ -19,7 +19,7 @@ import static org.openjdk.jmh.annotations.Scope.Benchmark;
 @Warmup(iterations = 5, time = 1000, timeUnit = MILLISECONDS)
 @Measurement(iterations = 5, time = 1000, timeUnit = MILLISECONDS)
 @BenchmarkMode(AverageTime)
-@Fork(value = 1, jvmArgsAppend = {"-XX:UseAVX=3", "-Djdk.incubator.vector.VECTOR_ACCESS_OOB_CHECK=0"})
+@Fork(value = 1, jvmArgsAppend = {"-Djava.library.path=./native/build", "-XX:UseAVX=3", "--enable-preview", "--add-modules", "jdk.incubator.vector", "-Djdk.incubator.vector.VECTOR_ACCESS_OOB_CHECK=0"})
 public class Bench {
     private final Matrix4f m4 = new Matrix4f();
     private final Matrix4fn m4n = new Matrix4fn();
