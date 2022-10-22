@@ -32,8 +32,18 @@
                     <target>20</target>
                     <compilerArgs>
                         <arg>--add-modules</arg>
-                        <arg>jdk.incubator.vector</arg>
+                        <arg>jdk.incubator.vector,jdk.internal.vm.ci</arg>
                         <arg>--enable-preview</arg>
+                        <arg>--add-exports</arg>
+                        <arg>jdk.internal.vm.ci/jdk.vm.ci.code=ALL-UNNAMED</arg>
+                        <arg>--add-exports</arg>
+                        <arg>jdk.internal.vm.ci/jdk.vm.ci.code.site=ALL-UNNAMED</arg>
+                        <arg>--add-exports</arg>
+                        <arg>jdk.internal.vm.ci/jdk.vm.ci.hotspot=ALL-UNNAMED</arg>
+                        <arg>--add-exports</arg>
+                        <arg>jdk.internal.vm.ci/jdk.vm.ci.meta=ALL-UNNAMED</arg>
+                        <arg>--add-exports</arg>
+                        <arg>jdk.internal.vm.ci/jdk.vm.ci.runtime=ALL-UNNAMED</arg>
                     </compilerArgs>
                 </configuration>
             </plugin>

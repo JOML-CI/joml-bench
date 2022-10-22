@@ -44,4 +44,4 @@ BINUTILS=$(pwd)/binutils-2.32
 )
 
 # Build and run the benchmarks
-./mvnw package && java --enable-preview --add-modules jdk.incubator.vector -jar target/bench.jar
+./mvnw package && java -jar target/bench.jar

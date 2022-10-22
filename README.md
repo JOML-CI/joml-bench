@@ -55,28 +55,30 @@ OpenJDK 64-Bit Server VM (build 20-ea+20-1466, mixed mode, sharing)
 ```
 Results:
 ```
-Benchmark                      Mode  Cnt   Score   Error  Units
-Bench.Matrix4f_invert          avgt    5  20,748 ± 0,519  ns/op
-Bench.Matrix4f_storePutBB      avgt    5   4,002 ± 0,072  ns/op
-Bench.Matrix4f_storePutFB      avgt    5   3,348 ± 0,050  ns/op
-Bench.Matrix4f_storeU          avgt    5   2,073 ± 0,046  ns/op
-Bench.Matrix4f_transpose       avgt    5   2,681 ± 0,027  ns/op
-Bench.Matrix4fn_mulAVX         avgt    5   6,230 ± 0,141  ns/op
-Bench.Matrix4fn_mulSSE         avgt    5   7,377 ± 0,148  ns/op
-Bench.Matrix4fn_noop           avgt    5   4,623 ± 0,089  ns/op
-Bench.Matrix4fvArr_invert128   avgt    5  81,263 ± 0,959  ns/op
-Bench.Matrix4fvArr_storePutFB  avgt    5   8,815 ± 0,124  ns/op
-Bench.Matrix4fvArr_storeU      avgt    5   2,018 ± 0,047  ns/op
-Bench.Matrix4fvArr_storeV256   avgt    5   7,767 ± 0,073  ns/op
-Bench.Matrix4fvArr_storeV512   avgt    5  23,319 ± 0,517  ns/op
-Bench.Matrix4fvArr_transpose   avgt    5  64,088 ± 0,754  ns/op
-Bench.mul128LoopArr            avgt    5   8,462 ± 0,074  ns/op
-Bench.mul128LoopBB             avgt    5  16,330 ± 0,113  ns/op
-Bench.mul128UnrolledArr        avgt    5   8,477 ± 0,192  ns/op
-Bench.mul128UnrolledBB         avgt    5  16,448 ± 0,128  ns/op
-Bench.mul256Arr                avgt    5   8,622 ± 0,158  ns/op
-Bench.mul256BB                 avgt    5  16,770 ± 0,120  ns/op
-Bench.mulAffineScalarFma       avgt    5   7,603 ± 0,160  ns/op
-Bench.mulScalar                avgt    5  11,209 ± 0,262  ns/op
-Bench.mulScalarFma             avgt    5  10,252 ± 0,070  ns/op
+Benchmark                                 Mode  Cnt   Score   Error  Units
+Bench.invert_Matrix4f                     avgt   10  19,923 ± 0,262  ns/op
+Bench.invert_Matrix4f_Jvmci               avgt   10   8,464 ± 0,041  ns/op
+Bench.invert_Matrix4fvArr_128             avgt   10  81,036 ± 0,287  ns/op
+Bench.mulAffine_Matrix4f_FMA              avgt   10   6,350 ± 0,033  ns/op
+Bench.mul_Matrix4f                        avgt   10  10,892 ± 0,068  ns/op
+Bench.mul_Matrix4f_FMA                    avgt   10   8,493 ± 0,045  ns/op
+Bench.mul_Matrix4f_Jvmci                  avgt   10   3,346 ± 0,017  ns/op
+Bench.mul_Matrix4fn_AVX                   avgt   10   6,136 ± 0,237  ns/op
+Bench.mul_Matrix4fn_SSE                   avgt   10   6,743 ± 0,033  ns/op
+Bench.mul_Matrix4fvArr_128_Loop           avgt   10   8,316 ± 0,037  ns/op
+Bench.mul_Matrix4fvArr_128_Unrolled       avgt   10   8,380 ± 0,012  ns/op
+Bench.mul_Matrix4fvArr_256                avgt   10   9,095 ± 0,113  ns/op
+Bench.mul_Matrix4fvBB_128_Loop            avgt   10  16,328 ± 0,260  ns/op
+Bench.mul_Matrix4fvBB_128_Unrolled        avgt   10  16,971 ± 0,179  ns/op
+Bench.mul_Matrix4fvBB_256                 avgt   10  16,741 ± 0,052  ns/op
+Bench.noop_jni                            avgt   10   4,667 ± 0,059  ns/op
+Bench.store_Matrix4f_ByteBuffer_put       avgt   10   4,582 ± 0,085  ns/op
+Bench.store_Matrix4f_FloatBuffer_put      avgt   10   3,433 ± 0,019  ns/op
+Bench.store_Matrix4f_Unsafe               avgt   10   1,684 ± 0,044  ns/op
+Bench.store_Matrix4fvArr_256              avgt   10   7,663 ± 0,015  ns/op
+Bench.store_Matrix4fvArr_512              avgt   10  23,101 ± 0,057  ns/op
+Bench.store_Matrix4fvArr_FloatBuffer_put  avgt   10   8,854 ± 0,031  ns/op
+Bench.store_Matrix4fvArr_Unsafe           avgt   10   2,058 ± 0,014  ns/op
+Bench.transpose_Matrix4f                  avgt   10   2,522 ± 0,004  ns/op
+Bench.transpose_Matrix4fvArr_128          avgt   10  64,862 ± 0,316  ns/op
 ```

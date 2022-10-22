@@ -16,137 +16,161 @@ import static org.openjdk.jmh.annotations.Scope.Benchmark;
 
 @State(Benchmark)
 @OutputTimeUnit(NANOSECONDS)
-@Warmup(iterations = 5, time = 1000, timeUnit = MILLISECONDS)
-@Measurement(iterations = 5, time = 1000, timeUnit = MILLISECONDS)
+@Warmup(iterations = 10, time = 1000, timeUnit = MILLISECONDS)
+@Measurement(iterations = 10, time = 1000, timeUnit = MILLISECONDS)
 @BenchmarkMode(AverageTime)
-@Fork(value = 1, jvmArgsAppend = {"-Djava.library.path=./native/build", "-XX:UseAVX=3", "--enable-preview", "--add-modules", "jdk.incubator.vector", "-Djdk.incubator.vector.VECTOR_ACCESS_OOB_CHECK=0"})
+@Fork(value = 1, jvmArgsAppend = {
+        "-Djava.library.path=./native/build",
+        "-XX:UseAVX=3",
+        "--enable-preview",
+        "--add-modules", "jdk.incubator.vector",
+        "-XX:+UnlockExperimentalVMOptions",
+        "-XX:+EnableJVMCI",
+        "--add-exports", "jdk.internal.vm.ci/jdk.vm.ci.code=ALL-UNNAMED",
+        "--add-exports", "jdk.internal.vm.ci/jdk.vm.ci.code.site=ALL-UNNAMED",
+        "--add-exports", "jdk.internal.vm.ci/jdk.vm.ci.hotspot=ALL-UNNAMED",
+        "--add-exports", "jdk.internal.vm.ci/jdk.vm.ci.meta=ALL-UNNAMED",
+        "--add-exports", "jdk.internal.vm.ci/jdk.vm.ci.runtime=ALL-UNNAMED",
+        "-Djdk.incubator.vector.VECTOR_ACCESS_OOB_CHECK=0"})
 public class Bench {
-    private final Matrix4f m4 = new Matrix4f();
-    private final Matrix4fn m4n = new Matrix4fn();
+    private final Matrix4f m4a = new Matrix4f();
+    private final Matrix4f m4b = new Matrix4f();
+    private final Matrix4f m4c = new Matrix4f();
+    private final Matrix4fn m4na = new Matrix4fn();
+    private final Matrix4fn m4nb = new Matrix4fn();
     private final Matrix4fvBB m4vbb = new Matrix4fvBB();
     private final Matrix4fvArr m4varr = new Matrix4fvArr();
     private final ByteBuffer bb = allocateDirect(16<<2).order(nativeOrder());
     private final FloatBuffer fb = bb.asFloatBuffer();
 
     @Benchmark
-    public void Matrix4fn_noop() {
-        m4n.noop(m4n);
+    public void mul_Matrix4f_Jvmci() {
+        WithJvmci.mulAvx(m4a, m4b, m4c);
     }
 
     @Benchmark
-    public void Matrix4fn_mulSSE() {
-        m4n.mulSSE(m4n);
+    public void invert_Matrix4f_Jvmci() {
+        WithJvmci.invert(m4a, m4b);
     }
 
     @Benchmark
-    public void Matrix4fn_mulAVX() {
-        m4n.mulAVX(m4n);
+    public void noop_jni() {
+        m4na.noop(m4nb);
     }
 
     @Benchmark
-    public void Matrix4f_transpose() {
-        m4.transpose(m4);
+    public void mul_Matrix4fn_SSE() {
+        m4na.mulSSE(m4nb);
     }
 
     @Benchmark
-    public void Matrix4fvArr_transpose() {
+    public void mul_Matrix4fn_AVX() {
+        m4na.mulAVX(m4nb);
+    }
+
+    @Benchmark
+    public void transpose_Matrix4f() {
+        m4a.transpose(m4b);
+    }
+
+    @Benchmark
+    public void transpose_Matrix4fvArr_128() {
         m4varr.transpose(m4varr);
     }
 
     @Benchmark
-    public void Matrix4f_invert() {
-        m4.invert(m4);
+    public void invert_Matrix4f() {
+        m4a.invert(m4b);
     }
 
     @Benchmark
-    public void Matrix4fvArr_invert128() {
+    public void invert_Matrix4fvArr_128() {
         m4varr.invert128(m4varr);
     }
 
     @Benchmark
-    public void Matrix4f_storePutFB() {
-        m4.storePutFB(fb);
+    public void store_Matrix4f_FloatBuffer_put() {
+        m4a.storePutFB(fb);
     }
 
     @Benchmark
-    public void Matrix4f_storePutBB() {
-        m4.storePutBB(bb);
+    public void store_Matrix4f_ByteBuffer_put() {
+        m4a.storePutBB(bb);
     }
 
     @Benchmark
-    public void Matrix4fvArr_storePutFB() {
+    public void store_Matrix4fvArr_FloatBuffer_put() {
         m4varr.storePut(fb);
     }
 
     @Benchmark
-    public void Matrix4fvArr_storeU() {
+    public void store_Matrix4fvArr_Unsafe() {
         m4varr.storeU(bb);
     }
 
     @Benchmark
-    public void Matrix4fvArr_storeV256() {
+    public void store_Matrix4fvArr_256() {
         m4varr.storeV256(bb);
     }
 
     @Benchmark
-    public void Matrix4fvArr_storeV512() {
+    public void store_Matrix4fvArr_512() {
         m4varr.storeV512(bb);
     }
 
     @Benchmark
-    public void Matrix4f_storeU() {
-        m4.storeU(bb);
+    public void store_Matrix4f_Unsafe() {
+        m4a.storeU(bb);
     }
 
     @Benchmark
-    public Object mulScalar() {
-        return m4.mul(m4);
+    public Object mul_Matrix4f() {
+        return m4a.mul(m4b);
     }
 
     @Benchmark
-    public Object mulScalarFma() {
-        return m4.mulFma(m4);
+    public Object mul_Matrix4f_FMA() {
+        return m4a.mulFma(m4b);
     }
 
     @Benchmark
-    public Object mulAffineScalarFma() {
-        return m4.mulAffineFma(m4);
+    public Object mulAffine_Matrix4f_FMA() {
+        return m4a.mulAffineFma(m4b);
     }
 
     @Benchmark
-    public Object mul256Arr() {
+    public Object mul_Matrix4fvArr_256() {
         return m4varr.mul256(m4varr);
     }
 
     @Benchmark
-    public Object mul128UnrolledArr() {
+    public Object mul_Matrix4fvArr_128_Unrolled() {
         return m4varr.mul128Unrolled(m4varr);
     }
 
     @Benchmark
-    public Object mul128LoopArr() {
+    public Object mul_Matrix4fvArr_128_Loop() {
         return m4varr.mul128Loop(m4varr);
     }
 
     @Benchmark
-    public Object mul256BB() {
+    public Object mul_Matrix4fvBB_256() {
         return m4vbb.mul256(m4vbb);
     }
 
     @Benchmark
-    public Object mul128UnrolledBB() {
+    public Object mul_Matrix4fvBB_128_Unrolled() {
         return m4vbb.mul128Unrolled(m4vbb);
     }
 
     @Benchmark
-    public Object mul128LoopBB() {
+    public Object mul_Matrix4fvBB_128_Loop() {
         return m4vbb.mul128Loop(m4vbb);
     }
 
     public static void main(String[] args) throws Exception {
         new Runner(new OptionsBuilder()
             .include(Bench.class.getName())
-            //.addProfiler(LinuxPerfProfiler.class)
             .build()
         ).run();
     }
