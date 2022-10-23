@@ -45,7 +45,7 @@ The x86 code is then printed to stdout. This requires the hsdis utility library 
 
 # Results
 
-## Ryzen 5950X and JDK 20 build 20
+## Ryzen 5950X
 ### With -Djdk.incubator.vector.VECTOR_ACCESS_OOB_CHECK=0
 ```
 java -version
@@ -57,7 +57,7 @@ Results:
 ```
 Benchmark                                 Mode  Cnt   Score   Error  Units
 Bench.invert_Matrix4f                     avgt   10  19,923 ± 0,262  ns/op
-Bench.invert_Matrix4f_Jvmci               avgt   10   8,464 ± 0,041  ns/op
+Bench.invert_Matrix4f_Jvmci               avgt   10   7,758 ± 0,036  ns/op
 Bench.invert_Matrix4fvArr_128             avgt   10  81,036 ± 0,287  ns/op
 Bench.mulAffine_Matrix4f_FMA              avgt   10   6,350 ± 0,033  ns/op
 Bench.mul_Matrix4f                        avgt   10  10,892 ± 0,068  ns/op
