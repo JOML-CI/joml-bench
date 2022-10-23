@@ -41,6 +41,7 @@ public class Bench {
     private final Matrix4fvBB m4vbb = new Matrix4fvBB();
     private final Matrix4fvArr m4varr = new Matrix4fvArr();
     private final ByteBuffer bb = allocateDirect(16<<2).order(nativeOrder());
+    private final long bb_addr = WithJvmci.address(bb);
     private final FloatBuffer fb = bb.asFloatBuffer();
 
     @Benchmark
@@ -101,6 +102,11 @@ public class Bench {
     @Benchmark
     public void store_Matrix4f_FloatBuffer_put() {
         m4a.storePutFB(fb);
+    }
+
+    @Benchmark
+    public void store_Matrix4f_Jvmci_AVX2() {
+        WithJvmci.storeAvx2(m4a, bb_addr);
     }
 
     @Benchmark
