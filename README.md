@@ -80,5 +80,6 @@ Bench.store_Matrix4fvArr_512              avgt   10  23,101 ± 0,057  ns/op
 Bench.store_Matrix4fvArr_FloatBuffer_put  avgt   10   8,854 ± 0,031  ns/op
 Bench.store_Matrix4fvArr_Unsafe           avgt   10   2,058 ± 0,014  ns/op
 Bench.transpose_Matrix4f                  avgt   10   2,522 ± 0,004  ns/op
+Bench.transpose_Matrix4f_Jvmci            avgt   10   1,598 ± 0,014  ns/op
 Bench.transpose_Matrix4fvArr_128          avgt   10  64,862 ± 0,316  ns/op
 ```

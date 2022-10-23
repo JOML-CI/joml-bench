@@ -54,6 +54,11 @@ public class Bench {
     }
 
     @Benchmark
+    public void transpose_Matrix4f_Jvmci() {
+        WithJvmci.transpose(m4a, m4b);
+    }
+
+    @Benchmark
     public void noop_jni() {
         m4na.noop(m4nb);
     }

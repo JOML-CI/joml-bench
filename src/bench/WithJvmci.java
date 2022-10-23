@@ -194,6 +194,26 @@ public class WithJvmci {
           (byte) 0x58, (byte) 0xC1, (byte) 0xC5, (byte) 0xE8, (byte) 0x58, (byte) 0xC0, (byte) 0xC4, (byte) 0xC1,
           (byte) 0x78, (byte) 0x11, (byte) 0x41, (byte) 0x40, (byte) 0xC3};
 
+  private static final byte[] TRANSPOSE_LINUX = {
+          (byte) 0xC5, (byte) 0xF8, (byte) 0x10, (byte) 0x46, (byte) 0x10, (byte) 0xC5,
+          (byte) 0xF8, (byte) 0x10, (byte) 0x4E, (byte) 0x20, (byte) 0xC5, (byte) 0xF8, (byte) 0x10, (byte) 0x56,
+          (byte) 0x30, (byte) 0xC5, (byte) 0xF8, (byte) 0x10, (byte) 0x5E, (byte) 0x40, (byte) 0xC5, (byte) 0xF8,
+          (byte) 0xC6, (byte) 0xE1, (byte) 0x88, (byte) 0xC5, (byte) 0xF8, (byte) 0xC6, (byte) 0xC1, (byte) 0xDD,
+          (byte) 0xC5, (byte) 0xE8, (byte) 0xC6, (byte) 0xCB, (byte) 0x88, (byte) 0xC5, (byte) 0xE8, (byte) 0xC6,
+          (byte) 0xD3, (byte) 0xDD, (byte) 0xC5, (byte) 0xF8, (byte) 0x11, (byte) 0x62, (byte) 0x10, (byte) 0xC5,
+          (byte) 0xF8, (byte) 0x11, (byte) 0x42, (byte) 0x20, (byte) 0xC5, (byte) 0xF8, (byte) 0x11, (byte) 0x4A,
+          (byte) 0x30, (byte) 0xC5, (byte) 0xF8, (byte) 0x11, (byte) 0x52, (byte) 0x40, (byte) 0xC3 };
+  private static final byte[] TRANSPOSE_WINDOWS = {
+          (byte) 0xC5, (byte) 0xF8, (byte) 0x10, (byte) 0x42, (byte) 0x10, (byte) 0xC5,
+          (byte) 0xF8, (byte) 0x10, (byte) 0x4A, (byte) 0x20, (byte) 0xC5, (byte) 0xF8, (byte) 0x10, (byte) 0x52,
+          (byte) 0x30, (byte) 0xC5, (byte) 0xF8, (byte) 0x10, (byte) 0x5A, (byte) 0x40, (byte) 0xC5, (byte) 0xF8,
+          (byte) 0xC6, (byte) 0xE1, (byte) 0x88, (byte) 0xC5, (byte) 0xF8, (byte) 0xC6, (byte) 0xC1, (byte) 0xDD,
+          (byte) 0xC5, (byte) 0xE8, (byte) 0xC6, (byte) 0xCB, (byte) 0x88, (byte) 0xC5, (byte) 0xE8, (byte) 0xC6,
+          (byte) 0xD3, (byte) 0xDD, (byte) 0xC4, (byte) 0xC1, (byte) 0x78, (byte) 0x11, (byte) 0x60, (byte) 0x10,
+          (byte) 0xC4, (byte) 0xC1, (byte) 0x78, (byte) 0x11, (byte) 0x40, (byte) 0x20, (byte) 0xC4, (byte) 0xC1,
+          (byte) 0x78, (byte) 0x11, (byte) 0x48, (byte) 0x30, (byte) 0xC4, (byte) 0xC1, (byte) 0x78, (byte) 0x11,
+          (byte) 0x50, (byte) 0x40, (byte) 0xC3 };
+
   static {
     try {
       WithJvmci.link();
@@ -204,6 +224,7 @@ public class WithJvmci {
 
   public static native void mulAvx(Matrix4f a, Matrix4f b, Matrix4f r);
   public static native void invert(Matrix4f a, Matrix4f r);
+  public static native void transpose(Matrix4f a, Matrix4f r);
 
   public static void link() throws Exception {
     String os = System.getProperty("os.name");
@@ -223,6 +244,16 @@ public class WithJvmci {
       byte[] code = isWindows ? INVERT_WINDOWS : INVERT_LINUX;
       int length = code.length;
       Method m = WithJvmci.class.getDeclaredMethod("invert", Matrix4f.class, Matrix4f.class);
+      ResolvedJavaMethod rm = jvmci.getMetaAccess().lookupJavaMethod(m);
+      HotSpotCompiledNmethod nm = new HotSpotCompiledNmethod(m.getName(), code, length, new Site[0],
+              new Assumptions.Assumption[0], new ResolvedJavaMethod[0], new HotSpotCompiledCode.Comment[0], new byte[0], 1,
+              new DataPatch[0], true, 0, null, (HotSpotResolvedJavaMethod) rm, JVMCICompiler.INVOCATION_ENTRY_BCI, 1, 0, false);
+      jvmci.getCodeCache().setDefaultCode(rm, nm);
+    }
+    {
+      byte[] code = isWindows ? TRANSPOSE_WINDOWS : TRANSPOSE_LINUX;
+      int length = code.length;
+      Method m = WithJvmci.class.getDeclaredMethod("transpose", Matrix4f.class, Matrix4f.class);
       ResolvedJavaMethod rm = jvmci.getMetaAccess().lookupJavaMethod(m);
       HotSpotCompiledNmethod nm = new HotSpotCompiledNmethod(m.getName(), code, length, new Site[0],
               new Assumptions.Assumption[0], new ResolvedJavaMethod[0], new HotSpotCompiledCode.Comment[0], new byte[0], 1,
