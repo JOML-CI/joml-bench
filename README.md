@@ -62,7 +62,8 @@ Bench.invert_Matrix4fvArr_128             avgt   10  81,036 ± 0,287  ns/op
 Bench.mulAffine_Matrix4f_FMA              avgt   10   6,350 ± 0,033  ns/op
 Bench.mul_Matrix4f                        avgt   10  10,892 ± 0,068  ns/op
 Bench.mul_Matrix4f_FMA                    avgt   10   8,493 ± 0,045  ns/op
-Bench.mul_Matrix4f_Jvmci                  avgt   10   3,346 ± 0,017  ns/op
+Bench.mul_Matrix4f_Jvmci_AVX              avgt   10   3,346 ± 0,017  ns/op
+Bench.mul_Matrix4f_Jvmci_AVX2             avgt   10   2,459 ± 0,013  ns/op
 Bench.mul_Matrix4fn_AVX                   avgt   10   6,136 ± 0,237  ns/op
 Bench.mul_Matrix4fn_SSE                   avgt   10   6,743 ± 0,033  ns/op
 Bench.mul_Matrix4fvArr_128_Loop           avgt   10   8,316 ± 0,037  ns/op

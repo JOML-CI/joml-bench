@@ -44,8 +44,13 @@ public class Bench {
     private final FloatBuffer fb = bb.asFloatBuffer();
 
     @Benchmark
-    public void mul_Matrix4f_Jvmci() {
+    public void mul_Matrix4f_Jvmci_AVX() {
         WithJvmci.mulAvx(m4a, m4b, m4c);
+    }
+
+    @Benchmark
+    public void mul_Matrix4f_Jvmci_AVX2() {
+        WithJvmci.mulAvx2(m4a, m4b, m4c);
     }
 
     @Benchmark
