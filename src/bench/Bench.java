@@ -31,7 +31,8 @@ import static org.openjdk.jmh.annotations.Scope.Benchmark;
         "--add-exports", "jdk.internal.vm.ci/jdk.vm.ci.hotspot=ALL-UNNAMED",
         "--add-exports", "jdk.internal.vm.ci/jdk.vm.ci.meta=ALL-UNNAMED",
         "--add-exports", "jdk.internal.vm.ci/jdk.vm.ci.runtime=ALL-UNNAMED",
-        "-Djdk.incubator.vector.VECTOR_ACCESS_OOB_CHECK=0"})
+        "-Djdk.incubator.vector.VECTOR_ACCESS_OOB_CHECK=0",
+        "--enable-native-access=ALL-UNNAMED"})
 public class Bench {
     private final Matrix4f m4a = new Matrix4f();
     private final Matrix4f m4b = new Matrix4f();
@@ -65,13 +66,18 @@ public class Bench {
     }
 
     @Benchmark
-    public void noop_jni() {
+    public void noop_jni_2args() {
         m4na.noop(m4nb);
     }
 
     @Benchmark
     public void noop_Jvmci_2args() {
         WithJvmci.noop_2_args(m4a, 0L);
+    }
+
+    @Benchmark
+    public void noop_Panama_2args() throws Throwable {
+        Matrix4fn.noop2ForPanama.invokeExact(1L, 2L);
     }
 
     @Benchmark
