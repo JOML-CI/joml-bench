@@ -72,6 +72,7 @@ Bench.mul_Matrix4fvArr_256                avgt   10   9,095 ± 0,113  ns/op
 Bench.mul_Matrix4fvBB_128_Loop            avgt   10  16,328 ± 0,260  ns/op
 Bench.mul_Matrix4fvBB_128_Unrolled        avgt   10  16,971 ± 0,179  ns/op
 Bench.mul_Matrix4fvBB_256                 avgt   10  16,741 ± 0,052  ns/op
+Bench.noop_Jvmci_2args                    avgt   10   1,296 ± 0,003  ns/op
 Bench.noop_jni                            avgt   10   4,667 ± 0,059  ns/op
 Bench.store_Matrix4f_ByteBuffer_put       avgt   10   4,582 ± 0,085  ns/op
 Bench.store_Matrix4f_FloatBuffer_put      avgt   10   3,433 ± 0,019  ns/op

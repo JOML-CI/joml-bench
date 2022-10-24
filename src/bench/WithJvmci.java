@@ -274,6 +274,8 @@ public class WithJvmci {
           (byte) 0x00, (byte) 0xC4, (byte) 0xC1, (byte) 0x7C, (byte) 0x11, (byte) 0x48, (byte) 0x20, (byte) 0xC5,
           (byte) 0xF8, (byte) 0x77, (byte) 0xC3 };
 
+  private static final byte[] NOOP = { (byte) 0xC3 };
+
   static {
     try {
       WithJvmci.link();
@@ -287,6 +289,7 @@ public class WithJvmci {
   public static native void invert(Matrix4f a, Matrix4f r);
   public static native void transpose(Matrix4f a, Matrix4f r);
   public static native void storeAvx2(Matrix4f a, long addr);
+  public static native void noop_2_args(Matrix4f a, long addr);
 
   public static long address(ByteBuffer bb) {
     return U.getLong(bb, A);
@@ -340,6 +343,16 @@ public class WithJvmci {
       byte[] code = isWindows ? STORE_WINDOWS : STORE_LINUX;
       int length = code.length;
       Method m = WithJvmci.class.getDeclaredMethod("storeAvx2", Matrix4f.class, long.class);
+      ResolvedJavaMethod rm = jvmci.getMetaAccess().lookupJavaMethod(m);
+      HotSpotCompiledNmethod nm = new HotSpotCompiledNmethod(m.getName(), code, length, new Site[0],
+              new Assumptions.Assumption[0], new ResolvedJavaMethod[0], new HotSpotCompiledCode.Comment[0], new byte[0], 1,
+              new DataPatch[0], true, 0, null, (HotSpotResolvedJavaMethod) rm, JVMCICompiler.INVOCATION_ENTRY_BCI, 1, 0, false);
+      jvmci.getCodeCache().setDefaultCode(rm, nm);
+    }
+    {
+      byte[] code = NOOP;
+      int length = code.length;
+      Method m = WithJvmci.class.getDeclaredMethod("noop_2_args", Matrix4f.class, long.class);
       ResolvedJavaMethod rm = jvmci.getMetaAccess().lookupJavaMethod(m);
       HotSpotCompiledNmethod nm = new HotSpotCompiledNmethod(m.getName(), code, length, new Site[0],
               new Assumptions.Assumption[0], new ResolvedJavaMethod[0], new HotSpotCompiledCode.Comment[0], new byte[0], 1,

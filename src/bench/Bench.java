@@ -70,6 +70,11 @@ public class Bench {
     }
 
     @Benchmark
+    public void noop_Jvmci_2args() {
+        WithJvmci.noop_2_args(m4a, 0L);
+    }
+
+    @Benchmark
     public void mul_Matrix4fn_SSE() {
         m4na.mulSSE(m4nb);
     }
