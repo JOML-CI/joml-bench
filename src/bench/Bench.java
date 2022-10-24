@@ -121,7 +121,7 @@ public class Bench {
     }
 
     @Benchmark
-    public void store_Matrix4f_ByteBuffer_put() {
+    public void store_Matrix4f_ByteBuffer_putFloat() {
         m4a.storePutBB(bb);
     }
 
