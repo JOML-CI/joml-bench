@@ -75,6 +75,8 @@ Bench.mul_Matrix4fvBB_256                 avgt   10  16,741 ± 0,052  ns/op
 Bench.noop_Jvmci_2args                    avgt   10   1,296 ± 0,003  ns/op
 Bench.noop_Panama_2args                   avgt   10   3,585 ± 0,032  ns/op
 Bench.noop_jni_2args                      avgt   10   4,541 ± 0,023  ns/op
+Bench.set_Matrix4f_Jvmci_AVX2             avgt   10   2,434 ± 0,016  ns/op
+Bench.set_Matrix4f                        avgt   10   3,316 ± 0,028  ns/op
 Bench.store_Matrix4f_ByteBuffer_putFloat  avgt   10   4,582 ± 0,085  ns/op
 Bench.store_Matrix4f_FloatBuffer_put      avgt   10   3,433 ± 0,019  ns/op
 Bench.store_Matrix4f_Jvmci_AVX2           avgt   10   1,374 ± 0,016  ns/op

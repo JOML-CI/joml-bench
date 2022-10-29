@@ -284,10 +284,24 @@ public class Matrix4f {
         return bb;
     }
 
-    public static void main(String[] args) {
-        System.out.println(new Matrix4f().mul(new Matrix4f()));
-        System.out.println("----");
-        System.out.println(new Matrix4f().mulFma(new Matrix4f()));
+    public Matrix4f set(Matrix4f dest) {
+        dest.m00 = m00;
+        dest.m01 = m01;
+        dest.m02 = m02;
+        dest.m03 = m03;
+        dest.m10 = m10;
+        dest.m11 = m11;
+        dest.m12 = m12;
+        dest.m13 = m13;
+        dest.m20 = m20;
+        dest.m21 = m21;
+        dest.m22 = m22;
+        dest.m23 = m23;
+        dest.m30 = m30;
+        dest.m31 = m31;
+        dest.m32 = m32;
+        dest.m33 = m33;
+        return this;
     }
 
 }

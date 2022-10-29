@@ -31,6 +31,7 @@ import static org.openjdk.jmh.annotations.Scope.Benchmark;
         "--add-exports", "jdk.internal.vm.ci/jdk.vm.ci.hotspot=ALL-UNNAMED",
         "--add-exports", "jdk.internal.vm.ci/jdk.vm.ci.meta=ALL-UNNAMED",
         "--add-exports", "jdk.internal.vm.ci/jdk.vm.ci.runtime=ALL-UNNAMED",
+        "--add-exports", "jdk.internal.vm.ci/jdk.vm.ci.amd64=ALL-UNNAMED",
         "-Djdk.incubator.vector.VECTOR_ACCESS_OOB_CHECK=0",
         "--enable-native-access=ALL-UNNAMED"})
 public class Bench {
@@ -108,6 +109,16 @@ public class Bench {
     @Benchmark
     public void invert_Matrix4fvArr_128() {
         m4varr.invert128(m4varr);
+    }
+
+    @Benchmark
+    public void set_Matrix4f_Jvmci_AVX2() {
+        WithJvmci.setAvx2(m4a, m4a);
+    }
+
+    @Benchmark
+    public void set_Matrix4f() {
+        m4a.set(m4b);
     }
 
     @Benchmark
