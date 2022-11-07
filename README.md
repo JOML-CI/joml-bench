@@ -62,8 +62,8 @@ Bench.invert_Matrix4fvArr_128             avgt   10  81,036 ± 0,287  ns/op
 Bench.mulAffine_Matrix4f_FMA              avgt   10   6,350 ± 0,033  ns/op
 Bench.mul_Matrix4f                        avgt   10  10,892 ± 0,068  ns/op
 Bench.mul_Matrix4f_FMA                    avgt   10   8,493 ± 0,045  ns/op
-Bench.mul_Matrix4f_Jvmci_AVX              avgt   10   3,346 ± 0,017  ns/op
-Bench.mul_Matrix4f_Jvmci_AVX2             avgt   10   2,459 ± 0,013  ns/op
+Bench.mul_Matrix4f_Jvmci_AVX_128          avgt   10   3,346 ± 0,017  ns/op
+Bench.mul_Matrix4f_Jvmci_AVX_256          avgt   10   2,459 ± 0,013  ns/op
 Bench.mul_Matrix4fn_AVX                   avgt   10   6,136 ± 0,237  ns/op
 Bench.mul_Matrix4fn_SSE                   avgt   10   6,743 ± 0,033  ns/op
 Bench.mul_Matrix4fvArr_128_Loop           avgt   10   8,316 ± 0,037  ns/op
@@ -75,11 +75,11 @@ Bench.mul_Matrix4fvBB_256                 avgt   10  16,741 ± 0,052  ns/op
 Bench.noop_Jvmci_2args                    avgt   10   1,296 ± 0,003  ns/op
 Bench.noop_Panama_2args                   avgt   10   3,585 ± 0,032  ns/op
 Bench.noop_jni_2args                      avgt   10   4,541 ± 0,023  ns/op
-Bench.set_Matrix4f_Jvmci_AVX2             avgt   10   2,434 ± 0,016  ns/op
+Bench.set_Matrix4f_Jvmci_AVX_256          avgt   10   2,434 ± 0,016  ns/op
 Bench.set_Matrix4f                        avgt   10   3,316 ± 0,028  ns/op
 Bench.store_Matrix4f_ByteBuffer_putFloat  avgt   10   4,582 ± 0,085  ns/op
 Bench.store_Matrix4f_FloatBuffer_put      avgt   10   3,433 ± 0,019  ns/op
-Bench.store_Matrix4f_Jvmci_AVX2           avgt   10   1,374 ± 0,016  ns/op
+Bench.store_Matrix4f_Jvmci_AVX_256        avgt   10   1,374 ± 0,016  ns/op
 Bench.store_Matrix4f_Unsafe               avgt   10   1,684 ± 0,044  ns/op
 Bench.store_Matrix4fvArr_256              avgt   10   7,663 ± 0,015  ns/op
 Bench.store_Matrix4fvArr_512              avgt   10  23,101 ± 0,057  ns/op
